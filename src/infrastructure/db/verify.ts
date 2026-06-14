@@ -4,7 +4,7 @@ import * as schema from "./schema"
 async function verify() {
   console.log("🔍 Verificando base de datos...\n")
 
-  const tables: [string, typeof schema.users][] = [
+  const tables: [string, any][] = [
     ["users", schema.users],
     ["projects", schema.projects],
     ["incident_types", schema.incidentTypes],
