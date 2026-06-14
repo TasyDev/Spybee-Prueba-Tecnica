@@ -46,7 +46,7 @@ export const incidents = pgTable(
     priority: text("priority").notNull(),
     status: text("status").notNull(),
     approval: boolean("approval").notNull().default(false),
-    deleted: boolean("deleted").default(null),
+    deleted: boolean("deleted"),
     projectId: text("project_id").references(() => projects.id),
     typeId: text("type_id").references(() => incidentTypes.id),
     ownerId: text("owner_id").references(() => users.id),
