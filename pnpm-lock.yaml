@@ -13,7 +13,7 @@ importers:
         version: 17.4.2
       drizzle-orm:
         specifier: ^0.45.2
-        version: 0.45.2(pg@8.21.0)
+        version: 0.45.2(@types/pg@8.20.0)(pg@8.21.0)
       hono:
         specifier: ^4.12.25
         version: 4.12.25
@@ -51,6 +51,9 @@ importers:
       '@types/node':
         specifier: ^20
         version: 20.19.43
+      '@types/pg':
+        specifier: ^8.20.0
+        version: 8.20.0
       '@types/react':
         specifier: ^19
         version: 19.2.17
@@ -75,6 +78,9 @@ importers:
       tailwindcss:
         specifier: ^4
         version: 4.3.1
+      tsx:
+        specifier: ^4.19.0
+        version: 4.22.4
       typescript:
         specifier: ^5
         version: 5.9.3
@@ -1625,6 +1631,9 @@ packages:
 
   '@types/pbf@3.0.5':
     resolution: {integrity: sha512-j3pOPiEcWZ34R6a6mN07mUkM4o4Lwf6hPNt8eilOeZhTFbxFXmKhvXl9Y28jotFPaI1bpPDJsbCprUoNke6OrA==}
+
+  '@types/pg@8.20.0':
+    resolution: {integrity: sha512-bEPFOaMAHTEP1EzpvHTbmwR8UsFyHSKsRisLIHVMXnpNefSbGA1bD6CVy+qKjGSqmZqNqBDV2azOBo8TgkcVow==}
 
   '@types/react-dom@19.2.3':
     resolution: {integrity: sha512-jp2L/eY6fn+KgVVQAOqYItbF0VY/YApe5Mz2F0aykSO8gx31bYCZyvSeYxCHKvzHG5eZjc+zyaS5BrBWya2+kQ==}
@@ -4765,6 +4774,12 @@ snapshots:
 
   '@types/pbf@3.0.5': {}
 
+  '@types/pg@8.20.0':
+    dependencies:
+      '@types/node': 20.19.43
+      pg-protocol: 1.14.0
+      pg-types: 2.2.0
+
   '@types/react-dom@19.2.3(@types/react@19.2.17)':
     dependencies:
       '@types/react': 19.2.17
@@ -5255,8 +5270,9 @@ snapshots:
       esbuild: 0.25.12
       tsx: 4.22.4
 
-  drizzle-orm@0.45.2(pg@8.21.0):
+  drizzle-orm@0.45.2(@types/pg@8.20.0)(pg@8.21.0):
     optionalDependencies:
+      '@types/pg': 8.20.0
       pg: 8.21.0
 
   dunder-proto@1.0.1:
