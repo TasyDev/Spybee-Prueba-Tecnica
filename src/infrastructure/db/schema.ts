@@ -8,6 +8,7 @@ import {
   primaryKey,
   index,
 } from "drizzle-orm/pg-core"
+import { relations } from "drizzle-orm"
 
 export const users = pgTable("users", {
   id: text("id").primaryKey(),
@@ -109,3 +110,52 @@ export const incidentTagsMapping = pgTable(
     pk: primaryKey({ columns: [table.incidentId, table.tagId] }),
   })
 )
+
+// Relations
+
+export const usersRelations = relations(users, ({ many }) => ({
+  ownedIncidents: many(incidents),
+  incidentAssignees: many(incidentAssignees),
+  incidentObservers: many(incidentObservers),
+}))
+
+export const projectsRelations = relations(projects, ({ many }) => ({
+  incidents: many(incidents),
+}))
+
+export const incidentTypesRelations = relations(incidentTypes, ({ many }) => ({
+  incidents: many(incidents),
+}))
+
+export const tagsRelations = relations(tags, ({ many }) => ({
+  incidentTagsMapping: many(incidentTagsMapping),
+}))
+
+export const incidentsRelations = relations(incidents, ({ one, many }) => ({
+  owner: one(users, { fields: [incidents.ownerId], references: [users.id] }),
+  project: one(projects, { fields: [incidents.projectId], references: [projects.id] }),
+  type: one(incidentTypes, { fields: [incidents.typeId], references: [incidentTypes.id] }),
+  media: many(media),
+  assignees: many(incidentAssignees),
+  observers: many(incidentObservers),
+  tagsMapping: many(incidentTagsMapping),
+}))
+
+export const mediaRelations = relations(media, ({ one }) => ({
+  incident: one(incidents, { fields: [media.incidentId], references: [incidents.id] }),
+}))
+
+export const incidentAssigneesRelations = relations(incidentAssignees, ({ one }) => ({
+  incident: one(incidents, { fields: [incidentAssignees.incidentId], references: [incidents.id] }),
+  user: one(users, { fields: [incidentAssignees.userId], references: [users.id] }),
+}))
+
+export const incidentObserversRelations = relations(incidentObservers, ({ one }) => ({
+  incident: one(incidents, { fields: [incidentObservers.incidentId], references: [incidents.id] }),
+  user: one(users, { fields: [incidentObservers.userId], references: [users.id] }),
+}))
+
+export const incidentTagsMappingRelations = relations(incidentTagsMapping, ({ one }) => ({
+  incident: one(incidents, { fields: [incidentTagsMapping.incidentId], references: [incidents.id] }),
+  tag: one(tags, { fields: [incidentTagsMapping.tagId], references: [tags.id] }),
+}))
