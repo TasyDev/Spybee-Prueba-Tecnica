@@ -19,4 +19,5 @@ export function getDb() {
   return dbInstance
 }
 
-export const db = getDb()
+// getDb() must be called at runtime, not at import time
+// export const db = getDb() // ❌ Removed to prevent build-time instantiation
