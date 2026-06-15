@@ -78,6 +78,66 @@ export class Incident {
     }
   }
 
+  updateTitle(title: string): void {
+    this.props.title = title
+    this.props.updatedAt = new Date()
+  }
+
+  updateDescription(description: string): void {
+    this.props.description = description
+    this.props.updatedAt = new Date()
+  }
+
+  updatePriority(priority: IncidentPriority): void {
+    this.props.priority = priority
+    this.props.updatedAt = new Date()
+  }
+
+  updateLocation(location: Location): void {
+    this.props.location = location
+    this.props.updatedAt = new Date()
+  }
+
+  updateLocationDescription(locationDescription: string): void {
+    this.props.locationDescription = locationDescription
+    this.props.updatedAt = new Date()
+  }
+
+  updateProjectId(projectId: string | null): void {
+    this.props.projectId = projectId
+    this.props.updatedAt = new Date()
+  }
+
+  updateTypeId(typeId: string | null): void {
+    this.props.typeId = typeId
+    this.props.updatedAt = new Date()
+  }
+
+  updateDueDate(dueDate: Date | null): void {
+    this.props.dueDate = dueDate
+    this.props.updatedAt = new Date()
+  }
+
+  updateWhatsappOwner(whatsappOwner: string | null): void {
+    this.props.whatsappOwner = whatsappOwner
+    this.props.updatedAt = new Date()
+  }
+
+  updateOwnerId(ownerId: string | null): void {
+    this.props.ownerId = ownerId
+    this.props.updatedAt = new Date()
+  }
+
+  updateSequenceId(sequenceId: string): void {
+    this.props.sequenceId = sequenceId
+    this.props.updatedAt = new Date()
+  }
+
+  updateOrderId(orderId: number): void {
+    this.props.orderId = orderId
+    this.props.updatedAt = new Date()
+  }
+
   transitionTo(newStatus: IncidentStatus): void {
     const valid = VALID_STATUS_TRANSITIONS[this.props.status]
     if (!valid.includes(newStatus)) {

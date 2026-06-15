@@ -25,7 +25,8 @@
       "@entities/*": ["./src/domain/entities/*"],
       "@value-objects/*": ["./src/domain/value-objects/*"],
       "@ports/*": ["./src/domain/ports/*"],
-      "@errors/*": ["./src/domain/errors/*"]
+      "@errors/*": ["./src/domain/errors/*"],
+      "@application/*": ["./src/application/*"]
     }
   },
   "include": [

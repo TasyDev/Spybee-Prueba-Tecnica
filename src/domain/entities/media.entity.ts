@@ -12,7 +12,7 @@ export interface MediaProps {
 }
 
 export class Media {
-  private constructor(private readonly props: MediaProps) {}
+  private constructor(private props: MediaProps) {}
 
   get id() { return this.props.id }
   get incidentId() { return this.props.incidentId }
@@ -29,5 +29,9 @@ export class Media {
 
   toProps(): MediaProps {
     return { ...this.props }
+  }
+
+  updateStatus(newStatus: MediaStatus): void {
+    this.props.status = newStatus
   }
 }

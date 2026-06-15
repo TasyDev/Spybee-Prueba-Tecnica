@@ -5,7 +5,7 @@ export interface TagProps {
 }
 
 export class Tag {
-  private constructor(private readonly props: TagProps) {}
+  private constructor(private props: TagProps) {}
 
   get id() { return this.props.id }
   get name() { return this.props.name }
@@ -17,5 +17,13 @@ export class Tag {
 
   toProps(): TagProps {
     return { ...this.props }
+  }
+
+  updateName(name: string): void {
+    this.props.name = name
+  }
+
+  updateColorHex(colorHex: string): void {
+    this.props.colorHex = colorHex
   }
 }
