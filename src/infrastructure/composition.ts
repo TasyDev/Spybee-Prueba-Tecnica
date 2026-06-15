@@ -57,6 +57,10 @@ import { createTagRouter } from "@http/controllers/tags.controller"
 import { createIncidentTypeRouter } from "@http/controllers/incident-types.controller"
 
 import { createApp } from "@http/app"
+import { SupabaseStorageService } from "@infrastructure/services/supabase-storage.service"
+
+// Storage service
+const storageService = new SupabaseStorageService()
 
 // Repositories
 const incidentRepository = new DrizzleIncidentRepository(db)
@@ -78,9 +82,9 @@ const addObserverUseCase = new AddObserverUseCase(incidentRepository, userReposi
 const removeObserverUseCase = new RemoveObserverUseCase(incidentRepository)
 const attachTagUseCase = new AttachTagUseCase(incidentRepository, tagRepository)
 const detachTagUseCase = new DetachTagUseCase(incidentRepository, tagRepository)
-const uploadMediaUseCase = new UploadMediaUseCase(incidentRepository)
+const uploadMediaUseCase = new UploadMediaUseCase(incidentRepository, storageService)
 const updateMediaUseCase = new UpdateMediaUseCase(incidentRepository)
-const deleteMediaUseCase = new DeleteMediaUseCase(incidentRepository)
+const deleteMediaUseCase = new DeleteMediaUseCase(incidentRepository, storageService)
 const listIncidentsByProjectUseCase = new ListIncidentsByProjectUseCase(incidentRepository)
 const listIncidentsByIncidentTypeUseCase = new ListIncidentsByIncidentTypeUseCase(incidentRepository)
 const listIncidentsByUserUseCase = new ListIncidentsByUserUseCase(incidentRepository)

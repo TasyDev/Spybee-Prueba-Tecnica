@@ -29,7 +29,7 @@ export interface PatchIncidentDto {
 }
 
 export interface UploadMediaDto {
-  url: string
+  file: Buffer
   filename: string
   mimeType: string
   size: number

@@ -12,6 +12,8 @@ export class MediaMapper {
       sizeBytes: row.sizeBytes,
       status: row.status as MediaStatus,
       url: row.url,
+      storagePath: row.storagePath,
+      storageBucket: row.storageBucket,
     })
   }
 
@@ -24,6 +26,8 @@ export class MediaMapper {
       size: entity.sizeBytes,
       status: entity.status,
       url: entity.url,
+      storagePath: entity.storagePath,
+      storageBucket: entity.storageBucket,
     }
   }
 }

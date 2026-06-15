@@ -147,14 +147,21 @@ export function createIncidentRouter(deps: {
     return c.body(null, 204)
   })
 
-  router.post("/:id/media", zValidator("json", uploadMediaSchema), async (c) => {
+  router.post("/:id/media", async (c) => {
     const incidentId = c.req.param("id")
-    const body = c.req.valid("json")
+    const body = await c.req.parseBody()
+    const file = body.file as File
+    
+    if (!file || !(file instanceof File)) {
+      return c.json({ error: "No file provided" }, 400)
+    }
+    
+    const buffer = Buffer.from(await file.arrayBuffer())
     const media = await deps.uploadMediaUseCase.execute(incidentId, {
-      url: body.url,
-      filename: body.filename,
-      mimeType: body.mimeType,
-      size: body.size,
+      file: buffer,
+      filename: file.name,
+      mimeType: file.type,
+      size: file.size,
     })
     return c.json(MediaMapper.toResponse(media), 201)
   })

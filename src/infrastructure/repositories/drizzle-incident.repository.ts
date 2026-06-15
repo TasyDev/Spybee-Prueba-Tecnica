@@ -251,6 +251,8 @@ export class DrizzleIncidentRepository implements IIncidentRepository {
       sizeBytes: props.sizeBytes,
       status: props.status,
       url: props.url,
+      storagePath: props.storagePath,
+      storageBucket: props.storageBucket,
     })
     return this.findMediaById(props.id) as Promise<Media>
   }

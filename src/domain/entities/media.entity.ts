@@ -9,6 +9,8 @@ export interface MediaProps {
   sizeBytes: number
   status: MediaStatus
   url: string
+  storagePath: string
+  storageBucket: string
 }
 
 export class Media {
@@ -22,6 +24,8 @@ export class Media {
   get sizeBytes() { return this.props.sizeBytes }
   get status() { return this.props.status }
   get url() { return this.props.url }
+  get storagePath() { return this.props.storagePath }
+  get storageBucket() { return this.props.storageBucket }
 
   static create(props: MediaProps): Media {
     return new Media({ ...props })
