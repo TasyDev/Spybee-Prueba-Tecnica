@@ -15,9 +15,6 @@ export class PatchIncidentTypeUseCase {
       type.updateNameEs(dto.name)
       type.updateNameEn(dto.name)
     }
-    if (dto.description !== undefined) {
-      type.updateDescription(dto.description)
-    }
     return this.incidentTypeRepository.update(type)
   }
 }

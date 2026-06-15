@@ -9,8 +9,6 @@ export class CreateProjectUseCase {
     const project = Project.create({
       id: crypto.randomUUID(),
       name: dto.name,
-      description: dto.description ?? null,
-      location: dto.location ?? null,
     })
     return this.projectRepository.save(project)
   }

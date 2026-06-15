@@ -14,12 +14,6 @@ export class PatchProjectUseCase {
     if (dto.name) {
       project.updateName(dto.name)
     }
-    if (dto.description !== undefined) {
-      project.updateDescription(dto.description)
-    }
-    if (dto.location !== undefined) {
-      project.updateLocation(dto.location)
-    }
     return this.projectRepository.update(project)
   }
 }

@@ -11,7 +11,6 @@ export class CreateIncidentTypeUseCase {
       key: dto.name.toLowerCase().replace(/\s+/g, "_"),
       nameEs: dto.name,
       nameEn: dto.name,
-      description: dto.description ?? null,
     })
     return this.incidentTypeRepository.save(type)
   }

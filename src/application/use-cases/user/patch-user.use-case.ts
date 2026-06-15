@@ -17,9 +17,6 @@ export class PatchUserUseCase {
     if (dto.email) {
       user.updateEmail(dto.email)
     }
-    if (dto.role !== undefined) {
-      user.updateRole(dto.role)
-    }
     return this.userRepository.update(user)
   }
 }

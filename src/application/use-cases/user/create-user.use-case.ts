@@ -10,7 +10,6 @@ export class CreateUserUseCase {
       id: crypto.randomUUID(),
       name: dto.name,
       email: dto.email,
-      role: dto.role,
       avatarUrl: null,
     })
     return this.userRepository.save(user)
