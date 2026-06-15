@@ -76,6 +76,8 @@ export const media = pgTable("media", {
   sizeBytes: integer("size_bytes").notNull(),
   status: text("status").notNull().default("uploaded"),
   url: text("url").notNull(),
+  storagePath: text("storage_path").notNull(),
+  storageBucket: text("storage_bucket").notNull(),
 })
 
 export const incidentAssignees = pgTable(

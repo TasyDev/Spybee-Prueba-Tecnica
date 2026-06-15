@@ -1,7 +1,8 @@
-import { db } from "./client"
+import { getDb } from "./client"
 import * as schema from "./schema"
 
 async function verify() {
+  const db = getDb()
   console.log("🔍 Verificando base de datos...\n")
 
   const tables: [string, any][] = [

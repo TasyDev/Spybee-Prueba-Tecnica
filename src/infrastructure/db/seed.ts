@@ -1,5 +1,5 @@
 import "dotenv/config"
-import { db } from "./client"
+import { getDb } from "./client"
 import {
   users,
   projects,
@@ -14,6 +14,7 @@ import {
 import mockData from "@root/data/incidents.mock.json"
 
 async function seed() {
+  const db = getDb()
   console.log("🌱 Starting seed...")
 
   // Extract unique entities from mock data
