@@ -30,6 +30,18 @@ export class PatchIncidentUseCase {
     if (dto.incidentTypeId !== undefined) {
       incident.updateTypeId(dto.incidentTypeId)
     }
+    if (dto.locationDescription !== undefined) {
+      incident.updateLocationDescription(dto.locationDescription)
+    }
+    if (dto.dueDate !== undefined) {
+      incident.updateDueDate(dto.dueDate)
+    }
+    if (dto.whatsappOwner !== undefined) {
+      incident.updateWhatsappOwner(dto.whatsappOwner)
+    }
+    if (dto.approval !== undefined) {
+      incident.setApproval(dto.approval)
+    }
 
     return this.incidentRepository.update(incident)
   }

@@ -10,6 +10,9 @@ export interface CreateIncidentDto {
   projectId?: string
   incidentTypeId?: string
   reportedById?: string
+  locationDescription?: string
+  dueDate?: Date | null
+  whatsappOwner?: string | null
 }
 
 export interface PatchIncidentDto {
@@ -19,6 +22,10 @@ export interface PatchIncidentDto {
   location?: Location
   status?: IncidentStatus
   incidentTypeId?: string
+  locationDescription?: string
+  dueDate?: Date | null
+  whatsappOwner?: string | null
+  approval?: boolean
 }
 
 export interface UploadMediaDto {

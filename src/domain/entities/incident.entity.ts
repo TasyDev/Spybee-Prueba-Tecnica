@@ -171,6 +171,11 @@ export class Incident {
     this.props.updatedAt = new Date()
   }
 
+  setApproval(approval: boolean): void {
+    this.props.approval = approval
+    this.props.updatedAt = new Date()
+  }
+
   addAssignee(userId: string): void {
     if (this.props.assigneeIds.includes(userId)) {
       throw new AssigneeAlreadyExistsError(this.props.id, userId)

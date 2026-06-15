@@ -17,6 +17,7 @@ export class AttachTagUseCase {
     if (!tag) {
       throw new NotFoundError("Tag", tagId)
     }
+    incident.attachTag(tagId)
     await this.incidentRepository.attachTag(incidentId, tagId)
   }
 }

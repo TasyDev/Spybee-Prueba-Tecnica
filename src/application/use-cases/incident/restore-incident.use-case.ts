@@ -5,7 +5,7 @@ export class RestoreIncidentUseCase {
   constructor(private readonly incidentRepository: IIncidentRepository) {}
 
   async execute(id: string): Promise<void> {
-    const incident = await this.incidentRepository.findById(id)
+    const incident = await this.incidentRepository.findByIdIncludingDeleted(id)
     if (!incident) {
       throw new NotFoundError("Incident", id)
     }

@@ -20,6 +20,7 @@ export interface IncidentFilters {
 export interface IIncidentRepository {
   findAll(filters: IncidentFilters): Promise<Incident[]>
   findById(id: string): Promise<Incident | null>
+  findByIdIncludingDeleted(id: string): Promise<Incident | null>
   findMediaById(mediaId: string): Promise<Media | null>
   save(incident: Incident): Promise<Incident>
   update(incident: Incident): Promise<Incident>

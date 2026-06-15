@@ -106,6 +106,24 @@ export class DrizzleIncidentRepository implements IIncidentRepository {
       },
     })
     if (!row) return null
+    if (row.deleted) return null
+    return IncidentMapper.toDomain(row)
+  }
+
+  async findByIdIncludingDeleted(id: string): Promise<Incident | null> {
+    const row = await this.db.query.incidents.findFirst({
+      where: eq(incidents.id, id),
+      with: {
+        owner: true,
+        project: true,
+        type: true,
+        media: true,
+        assignees: { with: { user: true } },
+        observers: { with: { user: true } },
+        tagsMapping: { with: { tag: true } },
+      },
+    })
+    if (!row) return null
     return IncidentMapper.toDomain(row)
   }
 

@@ -17,6 +17,7 @@ export class DetachTagUseCase {
     if (!tag) {
       throw new NotFoundError("Tag", tagId)
     }
+    incident.detachTag(tagId)
     await this.incidentRepository.detachTag(incidentId, tagId)
   }
 }

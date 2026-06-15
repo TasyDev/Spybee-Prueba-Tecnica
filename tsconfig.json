@@ -13,6 +13,7 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,
+    "baseUrl": ".",
     "plugins": [
       {
         "name": "next"
@@ -28,7 +29,12 @@
       "@errors/*": ["./src/domain/errors/*"],
       "@application/*": ["./src/application/*"],
       "@db/*": ["./src/infrastructure/db/*"],
-      "@mappers/*": ["./src/infrastructure/mappers/*"]
+      "@mappers/*": ["./src/infrastructure/mappers/*"],
+      "@repositories/*": ["./src/infrastructure/repositories/*"],
+      "@http/*": ["./src/infrastructure/http/*"],
+      "@middleware/*": ["./src/infrastructure/http/middleware/*"],
+      "@schemas/*": ["./src/infrastructure/http/schemas/*"],
+      "@infrastructure/*": ["./src/infrastructure/*"]
     }
   },
   "include": [
