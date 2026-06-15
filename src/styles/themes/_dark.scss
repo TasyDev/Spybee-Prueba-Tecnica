@@ -1,0 +1,13 @@
+@use '../abstracts' as *;
+
+// ===========================================
+// DARK THEME (default / only)
+// ===========================================
+
+// Spybee is a dark-only application.
+// All tokens are already defined in dark mode.
+// This file is kept for future multi-theme support.
+
+.theme-dark {
+  color-scheme: dark;
+}

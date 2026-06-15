@@ -1,0 +1,90 @@
+@use '../abstracts' as *;
+
+// ===========================================
+// GRID
+// ===========================================
+
+.grid {
+  display: grid;
+  gap: $spacing-gutter;
+  grid-template-columns: repeat(12, 1fr);
+  width: 100%;
+}
+
+// Column span classes
+@for $i from 1 through 12 {
+  .col-#{$i} {
+    grid-column: span #{$i};
+  }
+}
+
+// Responsive column resets
+@include mobile {
+  @for $i from 1 through 12 {
+    .col-#{$i} {
+      grid-column: span 12;
+    }
+  }
+}
+
+// ===========================================
+// CONTAINERS
+// ===========================================
+
+.container {
+  @include container;
+  max-width: 100%;
+}
+
+.container-narrow {
+  @include container;
+  max-width: 960px;
+}
+
+.container-wide {
+  @include container;
+  max-width: 1440px;
+}
+
+// ===========================================
+// PANELS
+// ===========================================
+
+.panel {
+  background-color: $color-elevation-1;
+  border-radius: $radius-panel;
+  padding: $spacing-panel-gap;
+  border: 1px solid $color-border;
+}
+
+.card {
+  background-color: $color-elevation-1;
+  border-radius: $radius-card;
+  padding: space(4);
+  border: 1px solid $color-border;
+}
+
+// ===========================================
+// FLEX / STACK
+// ===========================================
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: space(4);
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: space(4);
+}
+
+.row-between {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: space(4);
+}

@@ -1,0 +1,32 @@
+@use 'sass:math';
+@use 'sass:map';
+@use 'variables' as *;
+
+// ===========================================
+// FUNCTIONS
+// ===========================================
+
+// Convert px to rem
+@function rem($px) {
+  @return math.div($px, 16px) * 1rem;
+}
+
+// Space multiplier (base 4px)
+@function space($multiplier) {
+  @return $spacing-unit * $multiplier;
+}
+
+// Get color with opacity tint
+@function color-alpha($color, $opacity) {
+  @return rgba($color, $opacity);
+}
+
+// Get map value safely
+@function get-typo($map, $key) {
+  @return map.get($map, $key);
+}
+
+// Strip unit
+@function strip-unit($value) {
+  @return math.div($value, $value * 0 + 1);
+}
