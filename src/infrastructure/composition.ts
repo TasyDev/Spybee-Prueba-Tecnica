@@ -196,5 +196,3 @@ export function getApp() {
   }
   return composition.app
 }
-
-export const app = getApp()
