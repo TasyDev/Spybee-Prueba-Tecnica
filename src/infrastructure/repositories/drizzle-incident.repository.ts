@@ -30,6 +30,9 @@ export class DrizzleIncidentRepository implements IIncidentRepository {
     if (filters.incidentTypeId) {
       conditions.push(eq(incidents.typeId, filters.incidentTypeId))
     }
+    if (filters.ownerId) {
+      conditions.push(eq(incidents.ownerId, filters.ownerId))
+    }
     if (filters.deletedOnly) {
       conditions.push(eq(incidents.deleted, true))
     } else {
@@ -78,6 +81,11 @@ export class DrizzleIncidentRepository implements IIncidentRepository {
     if (filters.tagId) {
       result = result.filter((incident: Incident) =>
         incident.tagIds.includes(filters.tagId!)
+      )
+    }
+    if (filters.observerId) {
+      result = result.filter((incident: Incident) =>
+        incident.observerIds.includes(filters.observerId!)
       )
     }
 

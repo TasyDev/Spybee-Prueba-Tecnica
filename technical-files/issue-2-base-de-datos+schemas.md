@@ -12,7 +12,6 @@ Basado estrictamente en las entidades del mock JSON: **Incidencias**, **Proyecto
 | `GET` | `/incidents` | Listar incidencias (con filtros, paginación, ordenamiento) |
 | `GET` | `/incidents/{id}` | Obtener incidencia por ID |
 | `POST` | `/incidents` | Crear nueva incidencia |
-| `PUT` | `/incidents/{id}` | Reemplazar incidencia completa |
 | `PATCH` | `/incidents/{id}` | Actualizar parcialmente (status, priority, approval, dueDate, whatsappOwner, etc.) |
 | `DELETE` | `/incidents/{id}` | Soft-delete (marcar `deleted: true`) |
 | `PATCH` | `/incidents/{id}/restore` | Restaurar incidencia eliminada |
@@ -27,7 +26,6 @@ Basado estrictamente en las entidades del mock JSON: **Incidencias**, **Proyecto
 | `GET` | `/projects/{id}` | Obtener proyecto por ID |
 | `GET` | `/projects/{id}/incidents` | Incidencias de un proyecto |
 | `POST` | `/projects` | Crear proyecto |
-| `PUT` | `/projects/{id}` | Reemplazar proyecto completo |
 | `PATCH` | `/projects/{id}` | Actualizar nombre u otros campos |
 | `DELETE` | `/projects/{id}` | Eliminar proyecto |
 
@@ -41,7 +39,6 @@ Basado estrictamente en las entidades del mock JSON: **Incidencias**, **Proyecto
 | `GET` | `/incident-types/{id}` | Obtener tipo por ID |
 | `GET` | `/incident-types/{id}/incidents` | Incidencias de ese tipo |
 | `POST` | `/incident-types` | Crear nuevo tipo |
-| `PUT` | `/incident-types/{id}` | Reemplazar tipo completo |
 | `PATCH` | `/incident-types/{id}` | Actualizar nombre, key o name_en |
 | `DELETE` | `/incident-types/{id}` | Eliminar tipo |
 
@@ -55,7 +52,6 @@ Basado estrictamente en las entidades del mock JSON: **Incidencias**, **Proyecto
 | `GET` | `/users/{id}` | Obtener usuario por ID |
 | `GET` | `/users/{id}/incidents` | Incidencias donde participa (owner, assignee u observer) |
 | `POST` | `/users` | Crear usuario |
-| `PUT` | `/users/{id}` | Reemplazar usuario completo |
 | `PATCH` | `/users/{id}` | Actualizar nombre, email o avatar |
 | `DELETE` | `/users/{id}` | Eliminar usuario |
 
@@ -69,7 +65,6 @@ Basado estrictamente en las entidades del mock JSON: **Incidencias**, **Proyecto
 | `GET` | `/tags/{id}` | Obtener tag por ID |
 | `GET` | `/tags/{id}/incidents` | Incidencias con esa etiqueta |
 | `POST` | `/tags` | Crear etiqueta |
-| `PUT` | `/tags/{id}` | Reemplazar etiqueta completa |
 | `PATCH` | `/tags/{id}` | Actualizar nombre o color |
 | `DELETE` | `/tags/{id}` | Eliminar etiqueta |
 
@@ -97,11 +92,10 @@ Basado estrictamente en las entidades del mock JSON: **Incidencias**, **Proyecto
 |--------|-----------|-----|
 | `GET` | 14 | Consultar, listar, filtrar |
 | `POST` | 9 | Crear recursos y relaciones |
-| `PUT` | 5 | Reemplazo completo |
 | `PATCH` | 8 | Actualización parcial, acciones (restore, media) |
 | `DELETE` | 10 | Eliminación y quitar relaciones |
 
-**Total: 46 endpoints**
+**Total: 41 endpoints**
 
 ---
 

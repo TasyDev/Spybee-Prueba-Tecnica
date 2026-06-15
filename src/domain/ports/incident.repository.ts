@@ -6,7 +6,9 @@ export interface IncidentFilters {
   status?: string
   priority?: string
   incidentTypeId?: string
+  ownerId?: string
   assigneeId?: string
+  observerId?: string
   tagId?: string
   deletedOnly?: boolean
   page?: number
