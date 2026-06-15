@@ -1,4 +1,4 @@
-import { db } from "@db/client"
+import { getDb } from "@db/client"
 
 import { DrizzleIncidentRepository } from "@repositories/drizzle-incident.repository"
 import { DrizzleProjectRepository } from "@repositories/drizzle-project.repository"
@@ -59,125 +59,142 @@ import { createIncidentTypeRouter } from "@http/controllers/incident-types.contr
 import { createApp } from "@http/app"
 import { SupabaseStorageService } from "@infrastructure/services/supabase-storage.service"
 
-// Storage service
-const storageService = new SupabaseStorageService()
+let composition: ReturnType<typeof buildComposition> | null = null
 
-// Repositories
-const incidentRepository = new DrizzleIncidentRepository(db)
-const projectRepository = new DrizzleProjectRepository(db)
-const userRepository = new DrizzleUserRepository(db)
-const tagRepository = new DrizzleTagRepository(db)
-const incidentTypeRepository = new DrizzleIncidentTypeRepository(db)
+function buildComposition() {
+  const db = getDb()
+  
+  // Storage service
+  const storageService = new SupabaseStorageService()
+  
+  // Repositories
+  const incidentRepository = new DrizzleIncidentRepository(db)
+  const projectRepository = new DrizzleProjectRepository(db)
+  const userRepository = new DrizzleUserRepository(db)
+  const tagRepository = new DrizzleTagRepository(db)
+  const incidentTypeRepository = new DrizzleIncidentTypeRepository(db)
 
-// Incident use cases
-const listIncidentsUseCase = new ListIncidentsUseCase(incidentRepository)
-const getIncidentByIdUseCase = new GetIncidentByIdUseCase(incidentRepository)
-const createIncidentUseCase = new CreateIncidentUseCase(incidentRepository)
-const patchIncidentUseCase = new PatchIncidentUseCase(incidentRepository)
-const deleteIncidentUseCase = new DeleteIncidentUseCase(incidentRepository)
-const restoreIncidentUseCase = new RestoreIncidentUseCase(incidentRepository)
-const addAssigneeUseCase = new AddAssigneeUseCase(incidentRepository, userRepository)
-const removeAssigneeUseCase = new RemoveAssigneeUseCase(incidentRepository)
-const addObserverUseCase = new AddObserverUseCase(incidentRepository, userRepository)
-const removeObserverUseCase = new RemoveObserverUseCase(incidentRepository)
-const attachTagUseCase = new AttachTagUseCase(incidentRepository, tagRepository)
-const detachTagUseCase = new DetachTagUseCase(incidentRepository, tagRepository)
-const uploadMediaUseCase = new UploadMediaUseCase(incidentRepository, storageService)
-const updateMediaUseCase = new UpdateMediaUseCase(incidentRepository)
-const deleteMediaUseCase = new DeleteMediaUseCase(incidentRepository, storageService)
-const listIncidentsByProjectUseCase = new ListIncidentsByProjectUseCase(incidentRepository)
-const listIncidentsByIncidentTypeUseCase = new ListIncidentsByIncidentTypeUseCase(incidentRepository)
-const listIncidentsByUserUseCase = new ListIncidentsByUserUseCase(incidentRepository)
-const listIncidentsByTagUseCase = new ListIncidentsByTagUseCase(incidentRepository)
+  // Incident use cases
+  const listIncidentsUseCase = new ListIncidentsUseCase(incidentRepository)
+  const getIncidentByIdUseCase = new GetIncidentByIdUseCase(incidentRepository)
+  const createIncidentUseCase = new CreateIncidentUseCase(incidentRepository)
+  const patchIncidentUseCase = new PatchIncidentUseCase(incidentRepository)
+  const deleteIncidentUseCase = new DeleteIncidentUseCase(incidentRepository)
+  const restoreIncidentUseCase = new RestoreIncidentUseCase(incidentRepository)
+  const addAssigneeUseCase = new AddAssigneeUseCase(incidentRepository, userRepository)
+  const removeAssigneeUseCase = new RemoveAssigneeUseCase(incidentRepository)
+  const addObserverUseCase = new AddObserverUseCase(incidentRepository, userRepository)
+  const removeObserverUseCase = new RemoveObserverUseCase(incidentRepository)
+  const attachTagUseCase = new AttachTagUseCase(incidentRepository, tagRepository)
+  const detachTagUseCase = new DetachTagUseCase(incidentRepository, tagRepository)
+  const uploadMediaUseCase = new UploadMediaUseCase(incidentRepository, storageService)
+  const updateMediaUseCase = new UpdateMediaUseCase(incidentRepository)
+  const deleteMediaUseCase = new DeleteMediaUseCase(incidentRepository, storageService)
+  const listIncidentsByProjectUseCase = new ListIncidentsByProjectUseCase(incidentRepository)
+  const listIncidentsByIncidentTypeUseCase = new ListIncidentsByIncidentTypeUseCase(incidentRepository)
+  const listIncidentsByUserUseCase = new ListIncidentsByUserUseCase(incidentRepository)
+  const listIncidentsByTagUseCase = new ListIncidentsByTagUseCase(incidentRepository)
 
-// Project use cases
-const listProjectsUseCase = new ListProjectsUseCase(projectRepository)
-const getProjectByIdUseCase = new GetProjectByIdUseCase(projectRepository)
-const createProjectUseCase = new CreateProjectUseCase(projectRepository)
-const patchProjectUseCase = new PatchProjectUseCase(projectRepository)
-const deleteProjectUseCase = new DeleteProjectUseCase(projectRepository)
+  // Project use cases
+  const listProjectsUseCase = new ListProjectsUseCase(projectRepository)
+  const getProjectByIdUseCase = new GetProjectByIdUseCase(projectRepository)
+  const createProjectUseCase = new CreateProjectUseCase(projectRepository)
+  const patchProjectUseCase = new PatchProjectUseCase(projectRepository)
+  const deleteProjectUseCase = new DeleteProjectUseCase(projectRepository)
 
-// User use cases
-const listUsersUseCase = new ListUsersUseCase(userRepository)
-const getUserByIdUseCase = new GetUserByIdUseCase(userRepository)
-const createUserUseCase = new CreateUserUseCase(userRepository)
-const patchUserUseCase = new PatchUserUseCase(userRepository)
-const deleteUserUseCase = new DeleteUserUseCase(userRepository)
+  // User use cases
+  const listUsersUseCase = new ListUsersUseCase(userRepository)
+  const getUserByIdUseCase = new GetUserByIdUseCase(userRepository)
+  const createUserUseCase = new CreateUserUseCase(userRepository)
+  const patchUserUseCase = new PatchUserUseCase(userRepository)
+  const deleteUserUseCase = new DeleteUserUseCase(userRepository)
 
-// Tag use cases
-const listTagsUseCase = new ListTagsUseCase(tagRepository)
-const getTagByIdUseCase = new GetTagByIdUseCase(tagRepository)
-const createTagUseCase = new CreateTagUseCase(tagRepository)
-const patchTagUseCase = new PatchTagUseCase(tagRepository)
-const deleteTagUseCase = new DeleteTagUseCase(tagRepository)
+  // Tag use cases
+  const listTagsUseCase = new ListTagsUseCase(tagRepository)
+  const getTagByIdUseCase = new GetTagByIdUseCase(tagRepository)
+  const createTagUseCase = new CreateTagUseCase(tagRepository)
+  const patchTagUseCase = new PatchTagUseCase(tagRepository)
+  const deleteTagUseCase = new DeleteTagUseCase(tagRepository)
 
-// Incident type use cases
-const listIncidentTypesUseCase = new ListIncidentTypesUseCase(incidentTypeRepository)
-const getIncidentTypeByIdUseCase = new GetIncidentTypeByIdUseCase(incidentTypeRepository)
-const createIncidentTypeUseCase = new CreateIncidentTypeUseCase(incidentTypeRepository)
-const patchIncidentTypeUseCase = new PatchIncidentTypeUseCase(incidentTypeRepository)
-const deleteIncidentTypeUseCase = new DeleteIncidentTypeUseCase(incidentTypeRepository)
+  // Incident type use cases
+  const listIncidentTypesUseCase = new ListIncidentTypesUseCase(incidentTypeRepository)
+  const getIncidentTypeByIdUseCase = new GetIncidentTypeByIdUseCase(incidentTypeRepository)
+  const createIncidentTypeUseCase = new CreateIncidentTypeUseCase(incidentTypeRepository)
+  const patchIncidentTypeUseCase = new PatchIncidentTypeUseCase(incidentTypeRepository)
+  const deleteIncidentTypeUseCase = new DeleteIncidentTypeUseCase(incidentTypeRepository)
 
-// Routers
-const incidentRouter = createIncidentRouter({
-  listIncidentsUseCase,
-  getIncidentByIdUseCase,
-  createIncidentUseCase,
-  patchIncidentUseCase,
-  deleteIncidentUseCase,
-  restoreIncidentUseCase,
-  addAssigneeUseCase,
-  removeAssigneeUseCase,
-  addObserverUseCase,
-  removeObserverUseCase,
-  attachTagUseCase,
-  detachTagUseCase,
-  uploadMediaUseCase,
-  updateMediaUseCase,
-  deleteMediaUseCase,
-})
+  // Routers
+  const incidentRouter = createIncidentRouter({
+    listIncidentsUseCase,
+    getIncidentByIdUseCase,
+    createIncidentUseCase,
+    patchIncidentUseCase,
+    deleteIncidentUseCase,
+    restoreIncidentUseCase,
+    addAssigneeUseCase,
+    removeAssigneeUseCase,
+    addObserverUseCase,
+    removeObserverUseCase,
+    attachTagUseCase,
+    detachTagUseCase,
+    uploadMediaUseCase,
+    updateMediaUseCase,
+    deleteMediaUseCase,
+  })
 
-const projectRouter = createProjectRouter({
-  listProjectsUseCase,
-  getProjectByIdUseCase,
-  listIncidentsByProjectUseCase,
-  createProjectUseCase,
-  patchProjectUseCase,
-  deleteProjectUseCase,
-})
+  const projectRouter = createProjectRouter({
+    listProjectsUseCase,
+    getProjectByIdUseCase,
+    listIncidentsByProjectUseCase,
+    createProjectUseCase,
+    patchProjectUseCase,
+    deleteProjectUseCase,
+  })
 
-const userRouter = createUserRouter({
-  listUsersUseCase,
-  getUserByIdUseCase,
-  listIncidentsByUserUseCase,
-  createUserUseCase,
-  patchUserUseCase,
-  deleteUserUseCase,
-})
+  const userRouter = createUserRouter({
+    listUsersUseCase,
+    getUserByIdUseCase,
+    listIncidentsByUserUseCase,
+    createUserUseCase,
+    patchUserUseCase,
+    deleteUserUseCase,
+  })
 
-const tagRouter = createTagRouter({
-  listTagsUseCase,
-  getTagByIdUseCase,
-  listIncidentsByTagUseCase,
-  createTagUseCase,
-  patchTagUseCase,
-  deleteTagUseCase,
-})
+  const tagRouter = createTagRouter({
+    listTagsUseCase,
+    getTagByIdUseCase,
+    listIncidentsByTagUseCase,
+    createTagUseCase,
+    patchTagUseCase,
+    deleteTagUseCase,
+  })
 
-const incidentTypeRouter = createIncidentTypeRouter({
-  listIncidentTypesUseCase,
-  getIncidentTypeByIdUseCase,
-  listIncidentsByIncidentTypeUseCase,
-  createIncidentTypeUseCase,
-  patchIncidentTypeUseCase,
-  deleteIncidentTypeUseCase,
-})
+  const incidentTypeRouter = createIncidentTypeRouter({
+    listIncidentTypesUseCase,
+    getIncidentTypeByIdUseCase,
+    listIncidentsByIncidentTypeUseCase,
+    createIncidentTypeUseCase,
+    patchIncidentTypeUseCase,
+    deleteIncidentTypeUseCase,
+  })
 
-// App
-export const app = createApp({
-  incidentRouter,
-  projectRouter,
-  userRouter,
-  tagRouter,
-  incidentTypeRouter,
-})
+  // App
+  const app = createApp({
+    incidentRouter,
+    projectRouter,
+    userRouter,
+    tagRouter,
+    incidentTypeRouter,
+  })
+
+  return { app }
+}
+
+export function getApp() {
+  if (!composition) {
+    composition = buildComposition()
+  }
+  return composition.app
+}
+
+export const app = getApp()

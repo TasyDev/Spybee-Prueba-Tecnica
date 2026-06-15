@@ -1,7 +1,10 @@
 import { handle } from "hono/vercel"
-import { app } from "@infrastructure/composition"
+import { getApp } from "@infrastructure/composition"
 
-const handler = handle(app)
+const handler = (req: Request) => {
+  const app = getApp()
+  return handle(app)(req)
+}
 
 export const GET = handler
 export const POST = handler

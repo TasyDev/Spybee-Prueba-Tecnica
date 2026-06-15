@@ -3,12 +3,20 @@ import { drizzle } from "drizzle-orm/node-postgres"
 import { Pool } from "pg"
 import * as schema from "./schema"
 
-if (!process.env.DATABASE_URL) {
-  throw new Error("DATABASE_URL is not defined")
+let pool: Pool | null = null
+let dbInstance: ReturnType<typeof drizzle<typeof schema>> | null = null
+
+export function getDb() {
+  if (!dbInstance) {
+    if (!process.env.DATABASE_URL) {
+      throw new Error("DATABASE_URL is not defined")
+    }
+    pool = new Pool({
+      connectionString: process.env.DATABASE_URL,
+    })
+    dbInstance = drizzle(pool, { schema })
+  }
+  return dbInstance
 }
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-})
-
-export const db = drizzle(pool, { schema })
+export const db = getDb()
