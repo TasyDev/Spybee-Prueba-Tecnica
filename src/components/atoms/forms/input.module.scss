@@ -1,0 +1,29 @@
+@use '../../../styles/abstracts' as *;
+
+.input {
+  width: 100%;
+  padding: space(3) space(4);
+  background-color: $color-elevation-2;
+  border: 1px solid $color-border;
+  border-radius: $radius-button;
+  color: $color-on-surface;
+  outline: none;
+  @include transition(border-color);
+
+  &::placeholder {
+    color: $color-text-muted;
+  }
+
+  &:focus {
+    border-color: $color-primary-container;
+  }
+
+  &--error {
+    border-color: $color-status-danger;
+  }
+
+  &--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}

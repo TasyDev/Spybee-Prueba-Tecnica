@@ -1,0 +1,21 @@
+@use '../../../styles/abstracts' as *;
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: space(2);
+  text-decoration: none;
+  color: $color-on-surface-variant;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+
+  &:hover {
+    color: $color-on-surface;
+  }
+
+  &__text {
+    @include font-scale($font-body);
+  }
+}

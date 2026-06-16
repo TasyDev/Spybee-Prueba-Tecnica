@@ -1,0 +1,25 @@
+@use '../../../styles/abstracts' as *;
+
+.button {
+  @include button-base;
+  position: relative;
+  background-color: $color-primary-container;
+  color: $color-on-primary-container;
+  font-weight: $font-weight-bold;
+  box-shadow: $shadow-button;
+  padding: space(4) space(6);
+
+  &--full-width {
+    width: 100%;
+  }
+
+  &:hover:not(:disabled) {
+    opacity: 0.9;
+  }
+
+  &--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
