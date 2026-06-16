@@ -1,0 +1,7 @@
+@use '../../../styles/abstracts' as *;
+
+.logo {
+  @include font-scale($font-h1);
+  font-weight: $font-weight-bold;
+  color: $color-primary-container;
+}

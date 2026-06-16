@@ -1,0 +1,226 @@
+// ===========================================
+// 1. COLORS — Design Tokens
+// ===========================================
+
+// Surface
+$color-surface:              #171309;
+$color-surface-dim:          #171309;
+$color-surface-bright:       #3e392d;
+$color-surface-container-lowest: #110e05;
+$color-surface-container-low:    #1f1b11;
+$color-surface-container:        #231f15;
+$color-surface-container-high:   #2e2a1f;
+$color-surface-container-highest: #393429;
+
+// On-surface
+$color-on-surface:           #ebe1d1;
+$color-on-surface-variant:   #d1c5ac;
+$color-inverse-surface:      #ebe1d1;
+$color-inverse-on-surface: #353025;
+
+// Outlines
+$color-outline:              #9a9078;
+$color-outline-variant:      #4e4633;
+
+// Primary (Spybee Yellow)
+$color-surface-tint:         #f0c110;
+$color-primary:              #ffe5a0;
+$color-on-primary:           #3d2f00;
+$color-primary-container:    #f5c518;
+$color-on-primary-container: #695200;
+$color-inverse-primary:      #745b00;
+
+// Secondary
+$color-secondary:            #c8c6c5;
+$color-on-secondary:         #313030;
+$color-secondary-container:  #474746;
+$color-on-secondary-container: #b7b5b4;
+
+// Tertiary
+$color-tertiary:             #e8e6e6;
+$color-on-tertiary:          #303030;
+$color-tertiary-container:   #cccaca;
+$color-on-tertiary-container: #555555;
+
+// Error
+$color-error:                #ffb4ab;
+$color-on-error:             #690005;
+$color-error-container:      #93000a;
+$color-on-error-container:   #ffdad6;
+
+// Fixed variants
+$color-primary-fixed:        #ffe08b;
+$color-primary-fixed-dim:    #f0c110;
+$color-on-primary-fixed:     #241a00;
+$color-on-primary-fixed-variant: #584400;
+
+$color-secondary-fixed:      #e5e2e1;
+$color-secondary-fixed-dim:  #c8c6c5;
+$color-on-secondary-fixed:   #1c1b1b;
+$color-on-secondary-fixed-variant: #474746;
+
+$color-tertiary-fixed:       #e4e2e1;
+$color-tertiary-fixed-dim:   #c8c6c6;
+$color-on-tertiary-fixed:    #1b1c1c;
+$color-on-tertiary-fixed-variant: #474747;
+
+// Background
+$color-background:           #171309;
+$color-on-background:        #ebe1d1;
+$color-surface-variant:      #393429;
+
+// Status & Priority
+$color-status-danger:        #ef4444;
+$color-status-warning:       #f59e0b;
+$color-status-success:       #22c55e;
+
+// Category Tags
+$color-tag-blue:             #3b82f6;
+$color-tag-indigo:           #6366f1;
+$color-tag-purple:           #a855f7;
+$color-tag-teal:             #14b8a6;
+
+// Elevation
+$color-elevation-0:          #1a1a1a;
+$color-elevation-1:          #2d2d2d;
+$color-elevation-2:          #3d3d3d;
+
+// Utilities
+$color-text-muted:           #a0a0a0;
+$color-border:               #3d3d3d;
+
+// ===========================================
+// 2. TYPOGRAPHY — Design Tokens
+// ===========================================
+
+$font-family:                'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+$font-h1: (
+  font-size:    24px,
+  font-weight:  600,
+  line-height:  32px
+);
+
+$font-h2: (
+  font-size:    20px,
+  font-weight:  600,
+  line-height:  28px
+);
+
+$font-h3: (
+  font-size:    16px,
+  font-weight:  600,
+  line-height:  24px
+);
+
+$font-body: (
+  font-size:    14px,
+  font-weight:  400,
+  line-height:  20px
+);
+
+$font-caption: (
+  font-size:    12px,
+  font-weight:  400,
+  line-height:  16px
+);
+
+$font-label-caps: (
+  font-size:    11px,
+  font-weight:  500,
+  line-height:  14px,
+  letter-spacing: 0.05em
+);
+
+$font-h1-mobile: (
+  font-size:    20px,
+  font-weight:  600,
+  line-height:  28px
+);
+
+// ===========================================
+// 3. SPACING — Design Tokens
+// ===========================================
+
+$spacing-unit:       4px;
+$spacing-gutter:     16px;
+$spacing-margin-mobile:  16px;
+$spacing-margin-desktop: 32px;
+$spacing-panel-gap:  24px;
+
+// ===========================================
+// 4. RADIUS — Design Tokens
+// ===========================================
+
+$radius-sm:    0.25rem;
+$radius-md:    0.75rem;
+$radius-lg:    1rem;
+$radius-xl:    1.5rem;
+$radius-full:  9999px;
+$radius-default: 0.5rem;
+
+// Alias for components
+$radius-button:  8px;
+$radius-card:    12px;
+$radius-panel:   16px;
+$radius-tag:     $radius-full;
+
+// ===========================================
+// 5. ELEVATION / SHADOWS
+// ===========================================
+
+$shadow-modal: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+$shadow-button: 0px 4px 6px -4px rgba($color-primary-container, 0.10),
+                 0px 10px 15px -3px rgba($color-primary-container, 0.10);
+
+// ===========================================
+// 9. FONT WEIGHTS
+// ===========================================
+
+$font-weight-bold: 700;
+
+// ===========================================
+// 10. SIZES
+// ===========================================
+
+$size-form-max-width: 368px;
+
+// Glassmorphism
+$glass-bg: rgba($color-elevation-1, 0.60);
+$glass-backdrop: blur(6px);
+
+// Shadows
+$shadow-login: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+// Sizes
+$size-form-login-width: 420px;
+$padding-login-top: 40.5px;
+
+// ===========================================
+// 6. TRANSITIONS
+// ===========================================
+
+$transition-fast:   150ms ease-out;
+$transition-base:   200ms ease-out;
+$transition-slow:   300ms ease-out;
+
+// ===========================================
+// 7. BREAKPOINTS
+// ===========================================
+
+$bp-mobile:  480px;
+$bp-tablet:  768px;
+$bp-desktop: 1024px;
+$bp-wide:    1440px;
+
+// ===========================================
+// 8. Z-INDEX SCALE
+// ===========================================
+
+$z-base:       0;
+$z-sticky:     100;
+$z-dropdown:   200;
+$z-modal:      300;
+$z-toast:      400;
+$z-tooltip:    500;

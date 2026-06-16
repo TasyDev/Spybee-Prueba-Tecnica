@@ -1,0 +1,115 @@
+@use '../abstracts' as *;
+
+// ===========================================
+// SPACING UTILITIES
+// ===========================================
+
+// Margin
+@for $i from 0 through 16 {
+  .m-#{$i}  { margin: space($i); }
+  .mt-#{$i} { margin-top: space($i); }
+  .mr-#{$i} { margin-right: space($i); }
+  .mb-#{$i} { margin-bottom: space($i); }
+  .ml-#{$i} { margin-left: space($i); }
+  .mx-#{$i} { margin-left: space($i); margin-right: space($i); }
+  .my-#{$i} { margin-top: space($i); margin-bottom: space($i); }
+
+  // Padding
+  .p-#{$i}  { padding: space($i); }
+  .pt-#{$i} { padding-top: space($i); }
+  .pr-#{$i} { padding-right: space($i); }
+  .pb-#{$i} { padding-bottom: space($i); }
+  .pl-#{$i} { padding-left: space($i); }
+  .px-#{$i} { padding-left: space($i); padding-right: space($i); }
+  .py-#{$i} { padding-top: space($i); padding-bottom: space($i); }
+}
+
+// Gap utilities
+@for $i from 0 through 16 {
+  .gap-#{$i} { gap: space($i); }
+}
+
+// ===========================================
+// VISIBILITY
+// ===========================================
+
+.sr-only {
+  @include sr-only;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@include mobile {
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+
+@include desktop {
+  .hidden-desktop {
+    display: none !important;
+  }
+}
+
+// ===========================================
+// TEXT
+// ===========================================
+
+.text-center { text-align: center; }
+.text-left   { text-align: left; }
+.text-right  { text-align: right; }
+
+.truncate {
+  @include truncate;
+}
+
+.text-muted {
+  color: $color-text-muted;
+}
+
+.text-primary {
+  color: $color-primary;
+}
+
+.text-danger {
+  color: $color-status-danger;
+}
+
+.text-warning {
+  color: $color-status-warning;
+}
+
+.text-success {
+  color: $color-status-success;
+}
+
+// ===========================================
+// ELEVATION
+// ===========================================
+
+.elevation-0 {
+  @include elevation(0);
+}
+
+.elevation-1 {
+  @include elevation(1);
+}
+
+.elevation-2 {
+  @include elevation(2);
+}
+
+// ===========================================
+// RADIUS
+// ===========================================
+
+.rounded-sm    { border-radius: $radius-sm; }
+.rounded-md    { border-radius: $radius-md; }
+.rounded-lg    { border-radius: $radius-lg; }
+.rounded-xl    { border-radius: $radius-xl; }
+.rounded-full  { border-radius: $radius-full; }
+.rounded-button{ border-radius: $radius-button; }
+.rounded-card  { border-radius: $radius-card; }
+.rounded-panel { border-radius: $radius-panel; }

@@ -1,0 +1,64 @@
+@use '../abstracts' as *;
+
+// ===========================================
+// TYPOGRAPHY
+// ===========================================
+
+h1, .h1 {
+  @include responsive-h1;
+}
+
+h2, .h2 {
+  @include font-scale($font-h2);
+}
+
+h3, .h3 {
+  @include font-scale($font-h3);
+}
+
+body, .body {
+  @include font-scale($font-body);
+}
+
+.caption {
+  @include font-scale($font-caption);
+}
+
+.label-caps {
+  @include label-caps;
+}
+
+// ===========================================
+// BASE STYLES
+// ===========================================
+
+p {
+  @include font-scale($font-body);
+  margin-bottom: space(4);
+}
+
+strong {
+  font-weight: 600;
+}
+
+small {
+  @include font-scale($font-caption);
+}
+
+// ===========================================
+// LINKS
+// ===========================================
+
+a {
+  color: $color-primary-container;
+  @include transition(color);
+
+  &:hover {
+    color: $color-primary;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+    border-radius: $radius-sm;
+  }
+}

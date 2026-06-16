@@ -1,0 +1,24 @@
+@use '../../../styles/abstracts' as *;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: space(6);
+  position: relative;
+
+  &__fields {
+    display: flex;
+    flex-direction: column;
+    gap: space(6);
+  }
+
+  &__actions {
+    padding-top: space(4);
+  }
+
+  &__error {
+    @include font-scale($font-caption);
+    color: $color-error;
+    text-align: center;
+  }
+}

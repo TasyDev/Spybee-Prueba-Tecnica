@@ -16,7 +16,10 @@
   },
   "dependencies": {
     "@hono/zod-validator": "^0.8.0",
+    "@hookform/resolvers": "^5.4.0",
+    "@supabase/ssr": "^0.12.0",
     "@supabase/supabase-js": "^2.108.1",
+    "clsx": "^2.1.1",
     "dotenv": "^17.4.2",
     "drizzle-orm": "^0.45.2",
     "hono": "^4.12.25",
@@ -25,13 +28,15 @@
     "pg": "^8.21.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
+    "react-hook-form": "^7.79.0",
     "zod": "^4.4.3",
     "zustand": "^5.0.14"
   },
   "devDependencies": {
+    "@storybook/addon-mcp": "^0.6.0",
+    "@storybook/mcp": "^0.7.0",
     "@storybook/react": "^10.4.4",
     "@storybook/react-vite": "^10.4.4",
-    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/pg": "^8.20.0",
     "@types/react": "^19",
@@ -41,7 +46,6 @@
     "eslint-config-next": "16.2.9",
     "sass": "^1.101.0",
     "storybook": "^10.4.4",
-    "tailwindcss": "^4",
     "tsx": "^4.19.0",
     "typescript": "^5"
   }
