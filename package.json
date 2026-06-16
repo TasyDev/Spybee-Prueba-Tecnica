@@ -16,7 +16,10 @@
   },
   "dependencies": {
     "@hono/zod-validator": "^0.8.0",
+    "@hookform/resolvers": "^5.4.0",
+    "@supabase/ssr": "^0.12.0",
     "@supabase/supabase-js": "^2.108.1",
+    "clsx": "^2.1.1",
     "dotenv": "^17.4.2",
     "drizzle-orm": "^0.45.2",
     "hono": "^4.12.25",
@@ -25,6 +28,7 @@
     "pg": "^8.21.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
+    "react-hook-form": "^7.79.0",
     "zod": "^4.4.3",
     "zustand": "^5.0.14"
   },

@@ -121,6 +121,7 @@ table {
 
   // Typography
   --font-family: #{$font-family};
+  --font-weight-bold: #{$font-weight-bold};
 
   // Spacing
   --spacing-unit: #{$spacing-unit};
@@ -141,11 +142,20 @@ table {
 
   // Shadows
   --shadow-modal: #{$shadow-modal};
+  --shadow-button: #{$shadow-button};
 
   // Transitions
   --transition-fast: #{$transition-fast};
   --transition-base: #{$transition-base};
   --transition-slow: #{$transition-slow};
+
+  // Sizes
+  --size-form-max-width: #{$size-form-max-width};
+  --size-form-login-width: #{$size-form-login-width};
+  --padding-login-top: #{$padding-login-top};
+  --glass-bg: #{$glass-bg};
+  --glass-backdrop: #{$glass-backdrop};
+  --shadow-login: #{$shadow-login};
 
   // Z-index
   --z-base: #{$z-base};

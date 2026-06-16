@@ -171,6 +171,32 @@ $radius-tag:     $radius-full;
 
 $shadow-modal: 0 8px 32px rgba(0, 0, 0, 0.4);
 
+$shadow-button: 0px 4px 6px -4px rgba($color-primary-container, 0.10),
+                 0px 10px 15px -3px rgba($color-primary-container, 0.10);
+
+// ===========================================
+// 9. FONT WEIGHTS
+// ===========================================
+
+$font-weight-bold: 700;
+
+// ===========================================
+// 10. SIZES
+// ===========================================
+
+$size-form-max-width: 368px;
+
+// Glassmorphism
+$glass-bg: rgba($color-elevation-1, 0.60);
+$glass-backdrop: blur(6px);
+
+// Shadows
+$shadow-login: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+// Sizes
+$size-form-login-width: 420px;
+$padding-login-top: 40.5px;
+
 // ===========================================
 // 6. TRANSITIONS
 // ===========================================
