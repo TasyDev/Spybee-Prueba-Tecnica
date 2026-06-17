@@ -11,3 +11,9 @@ export default meta;
 type Story = StoryObj<typeof Logo>;
 
 export const Default: Story = {};
+
+export const Mark: Story = {
+  args: {
+    variant: 'mark',
+  },
+};

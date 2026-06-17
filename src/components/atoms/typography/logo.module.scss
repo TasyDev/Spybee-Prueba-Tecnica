@@ -5,3 +5,14 @@
   font-weight: $font-weight-bold;
   color: $color-primary-container;
 }
+
+.logoMark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 42px;
+  background: $color-primary-container;
+  border-radius: $radius-card;
+  box-shadow: $shadow-button;
+}
