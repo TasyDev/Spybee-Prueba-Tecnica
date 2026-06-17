@@ -1,0 +1,35 @@
+@use '../../../styles/abstracts' as *;
+
+.incidentPopup {
+  display: flex;
+  flex-direction: column;
+  gap: space(1);
+  width: 192px;
+  padding: space(3);
+  background: rgba($color-surface-container, 0.85);
+  border-radius: $radius-default;
+  outline: 1px solid $color-outline-variant;
+  outline-offset: -1px;
+  backdrop-filter: blur(6px);
+
+  &__title {
+    @include font-scale($font-body);
+    font-size: 16px;
+    line-height: 24px;
+    color: $color-error;
+    text-transform: uppercase;
+  }
+
+  &__location {
+    @include font-scale($font-caption);
+    font-weight: $font-weight-bold;
+    color: $color-on-surface;
+  }
+
+  &__time {
+    @include font-scale($font-caption);
+    font-size: 10px;
+    line-height: 15px;
+    color: $color-on-surface-variant;
+  }
+}
