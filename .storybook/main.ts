@@ -22,11 +22,12 @@ const config: StorybookConfig = {
       },
     }];
 
-    // Resolve @/ alias (tsconfig paths)
+    // Resolve @/ alias + mock next/image for Storybook compatibility
     config.resolve = config.resolve || {};
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
       '@': path.resolve(__dirname, '../src'),
+      'next/image': path.resolve(__dirname, '__mocks__/next-image'),
     };
 
     return config;
