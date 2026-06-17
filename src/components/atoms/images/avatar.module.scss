@@ -1,0 +1,23 @@
+@use '../../../styles/abstracts' as *;
+
+.avatar {
+  display: block;
+  object-fit: cover;
+  border-radius: $radius-full;
+  border: 1px solid $color-outline-variant;
+  background: $color-surface-container-high;
+}
+
+.avatarFallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $radius-full;
+  border: 1px solid $color-outline-variant;
+  background: $color-primary-container;
+  color: $color-on-primary-container;
+  font-weight: $font-weight-bold;
+  text-transform: uppercase;
+  line-height: 1;
+  user-select: none;
+}

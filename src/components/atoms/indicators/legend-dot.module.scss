@@ -1,0 +1,33 @@
+@use '../../../styles/abstracts' as *;
+
+.legendDot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: $radius-full;
+  flex-shrink: 0;
+
+  &--critical {
+    background: $color-error;
+
+    &.legendDot--pulsing {
+      box-shadow: 0px 0px 0px 4px $color-error, 0px 0px 0px 2px $color-background;
+    }
+  }
+
+  &--watchlist {
+    background: $color-primary-fixed;
+
+    &.legendDot--pulsing {
+      box-shadow: 0px 0px 0px 4px $color-primary-fixed, 0px 0px 0px 2px $color-background;
+    }
+  }
+
+  &--logged {
+    background: rgba($color-on-surface-variant, 0.50);
+
+    &.legendDot--pulsing {
+      box-shadow: 0px 0px 0px 4px rgba($color-on-surface-variant, 0.50), 0px 0px 0px 2px $color-background;
+    }
+  }
+}
