@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0",
+  "organization": "spybee",
+  "technology": "SCSS + React + Storybook",
+  "date": "June 2026",
+  "abstract": "Generates React components (TSX) + CSS Modules SCSS + Storybook from CSS code or a component description. Adapted for the Spybee Design System using src/styles/abstracts/ tokens and clsx for className composition.",
+  "references": [
+    "src/styles/abstracts/_variables.scss",
+    "src/styles/abstracts/_mixins.scss",
+    "src/styles/abstracts/_functions.scss"
+  ],
+  "categories": [
+    { "name": "Atomic Classification", "prefix": "atomic", "impact": "CRITICAL", "ruleCount": 1 },
+    { "name": "Component Generation", "prefix": "generate", "impact": "CRITICAL", "ruleCount": 4 },
+    { "name": "SCSS Tokens", "prefix": "tokens", "impact": "CRITICAL", "ruleCount": 1 },
+    { "name": "Naming Conventions", "prefix": "naming", "impact": "HIGH", "ruleCount": 1 }
+  ],
+  "totalRules": 7,
+  "category": "UI"
+}

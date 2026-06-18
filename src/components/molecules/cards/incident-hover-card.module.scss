@@ -1,0 +1,85 @@
+@use '../../../styles/abstracts' as *;
+
+.incidentHoverCard {
+  pointer-events: none;
+  min-width: 200px;
+  max-width: 280px;
+  padding: space(3) space(4);
+  background: rgba($color-surface-container, 0.95);
+  border: 1px solid rgba($color-outline-variant, 0.40);
+  border-radius: $radius-lg;
+  backdrop-filter: blur(10px);
+  box-shadow: $shadow-modal;
+  display: flex;
+  flex-direction: column;
+  gap: space(2);
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: space(2);
+  }
+
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    padding: space(0.5) space(2);
+    border-radius: $radius-full;
+    @include font-scale($font-label-caps);
+    font-size: 9px;
+    line-height: 14px;
+    font-weight: 600;
+
+    &--high {
+      background: rgba($color-status-danger, 0.20);
+      color: $color-status-danger;
+    }
+
+    &--medium {
+      background: rgba($color-status-warning, 0.20);
+      color: $color-status-warning;
+    }
+
+    &--low {
+      background: rgba($color-on-surface-variant, 0.20);
+      color: $color-on-surface-variant;
+    }
+  }
+
+  &__status {
+    @include font-scale($font-label-caps);
+    font-size: 9px;
+    line-height: 14px;
+    color: $color-text-muted;
+  }
+
+  &__title {
+    @include font-scale($font-body);
+    font-weight: 600;
+    color: $color-on-surface;
+    line-height: 18px;
+  }
+
+  &__location {
+    @include font-scale($font-caption);
+    font-size: 11px;
+    line-height: 15px;
+    color: $color-on-surface-variant;
+  }
+
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: space(2);
+    margin-top: space(1);
+    padding-top: space(2);
+    border-top: 1px solid rgba($color-outline-variant, 0.25);
+
+    span {
+      @include font-scale($font-caption);
+      font-size: 10px;
+      line-height: 14px;
+      color: $color-text-muted;
+    }
+  }
+}

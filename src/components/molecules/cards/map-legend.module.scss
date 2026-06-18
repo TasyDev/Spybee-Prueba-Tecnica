@@ -1,0 +1,43 @@
+@use '../../../styles/abstracts' as *;
+
+.mapLegend {
+  display: flex;
+  flex-direction: column;
+  gap: space(3);
+  width: 240px;
+  padding: space(4);
+  background: rgba($color-surface-container, 0.85);
+  border-radius: $radius-lg;
+  outline: 1px solid rgba(255, 255, 255, 0.05);
+  outline-offset: -1px;
+  backdrop-filter: blur(6px);
+  box-shadow: $shadow-login;
+
+  &__title {
+    @include font-scale($font-caption);
+    font-size: 10px;
+    line-height: 15px;
+    letter-spacing: 1px;
+    color: $color-on-surface-variant;
+    text-transform: uppercase;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: space(2);
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: space(3);
+  }
+
+  &__label {
+    @include font-scale($font-caption);
+    font-size: 12px;
+    line-height: 16px;
+    color: rgba($color-on-surface, 0.80);
+  }
+}

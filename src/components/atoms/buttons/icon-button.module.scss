@@ -1,0 +1,17 @@
+@use '../../../styles/abstracts' as *;
+
+.iconButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: $color-on-surface-variant;
+
+  &--active {
+    color: $color-on-surface;
+  }
+}

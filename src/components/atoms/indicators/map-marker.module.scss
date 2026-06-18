@@ -1,0 +1,56 @@
+@use '../../../styles/abstracts' as *;
+
+.mapMarker {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+
+  &__pulse {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    left: -50%;
+    top: -50%;
+    border-radius: $radius-full;
+    background: rgba($color-error, 0.40);
+  }
+
+  &__inner {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: $radius-full;
+    box-shadow: 0px 4px 6px -4px rgba(0, 0, 0, 0.10), 0px 10px 15px -3px rgba(0, 0, 0, 0.10);
+    z-index: 1;
+  }
+
+  &--critical &__inner {
+    width: 32px;
+    height: 32px;
+    background: $color-error;
+    outline: 2px solid white;
+    outline-offset: -2px;
+  }
+
+  &--watchlist &__inner {
+    width: 24px;
+    height: 24px;
+    background: $color-primary-container;
+    outline: 2px solid $color-on-primary-container;
+    outline-offset: -2px;
+  }
+
+  &--logged &__inner {
+    width: 24px;
+    height: 24px;
+    background: $color-surface-container-highest;
+    outline: 2px solid $color-outline-variant;
+    outline-offset: -2px;
+  }
+}
