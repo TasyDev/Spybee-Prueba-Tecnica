@@ -11,6 +11,7 @@ export interface FormFieldProps {
   placeholder?: string;
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
   disabled?: boolean;
   hasError?: boolean;
   errorMessage?: string;
@@ -28,6 +29,7 @@ export function FormField({
   placeholder,
   value,
   onChange,
+  onBlur,
   disabled,
   hasError,
   errorMessage,
@@ -56,6 +58,7 @@ export function FormField({
           placeholder={placeholder}
           value={value}
           onChange={onChange}
+          onBlur={onBlur}
           disabled={disabled}
           hasError={hasError}
           className={clsx(

@@ -4,12 +4,16 @@ export function useFilteredIncidents() {
   const incidents = useIncidentStore((state) => state.incidents);
   const filters = useIncidentStore((state) => state.filters);
 
-  const { status, priority, type, search } = filters;
+  const { status, priority, type, search, project, assignee, observer, owner } = filters;
   const normalizedSearch = search.trim().toLowerCase();
   const hasActiveFilters =
     status.length > 0 ||
     priority.length > 0 ||
     type.length > 0 ||
+    project.length > 0 ||
+    assignee.length > 0 ||
+    observer.length > 0 ||
+    owner.length > 0 ||
     normalizedSearch.length > 0;
 
   if (!hasActiveFilters) return incidents;
@@ -18,8 +22,12 @@ export function useFilteredIncidents() {
     if (status.length > 0 && !status.includes(incident.status)) return false;
     if (priority.length > 0 && !priority.includes(incident.priority)) return false;
     if (type.length > 0 && !type.includes(incident.type?.id ?? '')) return false;
+    if (project.length > 0 && !project.includes(incident.project?.id ?? '')) return false;
+    if (assignee.length > 0 && !assignee.some((id) => incident.assignees.some((a) => a.id === id))) return false;
+    if (observer.length > 0 && !observer.some((id) => incident.observers.some((o) => o.id === id))) return false;
+    if (owner.length > 0 && !owner.includes(incident.owner?.id ?? '')) return false;
     if (normalizedSearch.length > 0) {
-      const text = `${incident.title} ${incident.description} ${incident.locationDescription}`.toLowerCase();
+      const text = `${incident.title} ${incident.description} ${incident.locationDescription} ${incident.project?.name ?? ''} ${incident.owner?.name ?? ''} ${incident.assignees.map((a) => a.name).join(' ')} ${incident.observers.map((o) => o.name).join(' ')}`.toLowerCase();
       if (!text.includes(normalizedSearch)) return false;
     }
     return true;

@@ -1,18 +1,28 @@
 import { create } from 'zustand';
-import type { Incident, IncidentType, Filters, CreateIncidentInput, UpdateIncidentInput } from './types';
+import type { Incident, IncidentType, User, Tag, Project, Filters, CreateIncidentInput, UpdateIncidentInput } from './types';
 import { incidentApi } from '@/services/incidentApi';
 import { incidentTypeApi } from '@/services/incidentTypeApi';
+import { userApi } from '@/services/userApi';
+import { tagApi } from '@/services/tagApi';
+import { projectApi } from '@/services/projectApi';
 
 const INITIAL_FILTERS: Filters = {
   status: [],
   priority: [],
   type: [],
   search: '',
+  project: [],
+  assignee: [],
+  observer: [],
+  owner: [],
 };
 
 interface IncidentState {
   incidents: Incident[];
   incidentTypes: IncidentType[];
+  users: User[];
+  tags: Tag[];
+  projects: Project[];
   filters: Filters;
   selectedId: string | null;
   loading: boolean;
@@ -26,6 +36,9 @@ interface IncidentActions {
   setSelected: (id: string | null) => void;
   fetchIncidents: () => Promise<void>;
   fetchIncidentTypes: () => Promise<void>;
+  fetchUsers: () => Promise<void>;
+  fetchTags: () => Promise<void>;
+  fetchProjects: () => Promise<void>;
   createIncident: (draft: CreateIncidentInput) => Promise<void>;
   updateIncident: (id: string, changes: UpdateIncidentInput) => Promise<void>;
   deleteIncident: (id: string) => Promise<void>;
@@ -36,6 +49,9 @@ type IncidentStore = IncidentState & IncidentActions;
 export const useIncidentStore = create<IncidentStore>((set, get) => ({
   incidents: [],
   incidentTypes: [],
+  users: [],
+  tags: [],
+  projects: [],
   filters: INITIAL_FILTERS,
   selectedId: null,
   loading: false,
@@ -58,7 +74,7 @@ export const useIncidentStore = create<IncidentStore>((set, get) => ({
       set({ incidents: data, loading: false });
     } catch (err) {
       set({
-        error: err instanceof Error ? err.message : 'Failed to fetch incidents',
+        error: err instanceof Error ? err.message : 'Error al cargar incidencias',
         loading: false,
       });
     }
@@ -70,7 +86,40 @@ export const useIncidentStore = create<IncidentStore>((set, get) => ({
       set({ incidentTypes: data });
     } catch (err) {
       set({
-        error: err instanceof Error ? err.message : 'Failed to fetch incident types',
+        error: err instanceof Error ? err.message : 'Error al cargar tipos de incidencia',
+      });
+    }
+  },
+
+  fetchUsers: async () => {
+    try {
+      const data = await userApi.fetchAll();
+      set({ users: data });
+    } catch (err) {
+      set({
+        error: err instanceof Error ? err.message : 'Error al cargar usuarios',
+      });
+    }
+  },
+
+  fetchTags: async () => {
+    try {
+      const data = await tagApi.fetchAll();
+      set({ tags: data });
+    } catch (err) {
+      set({
+        error: err instanceof Error ? err.message : 'Error al cargar etiquetas',
+      });
+    }
+  },
+
+  fetchProjects: async () => {
+    try {
+      const data = await projectApi.fetchAll();
+      set({ projects: data });
+    } catch (err) {
+      set({
+        error: err instanceof Error ? err.message : 'Error al cargar proyectos',
       });
     }
   },
@@ -88,8 +137,8 @@ export const useIncidentStore = create<IncidentStore>((set, get) => ({
       priority: draft.priority,
       status: 'open',
       approval: false,
-      type: null,
-      project: null,
+      type: draft.incidentTypeId ? { id: draft.incidentTypeId } : null,
+      project: draft.projectId ? { id: draft.projectId } : null,
       owner: null,
       whatsappOwner: draft.whatsappOwner || null,
       assignees: [],

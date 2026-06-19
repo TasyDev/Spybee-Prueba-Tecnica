@@ -24,6 +24,23 @@ export const incidentApi = {
       body: JSON.stringify(data),
     }).then((res) => handleResponse<Incident>(res)),
 
+  createDraft: (data: CreateIncidentInput): Promise<Incident> =>
+    fetch(BASE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...data, status: 'draft' }),
+    }).then((res) => handleResponse<Incident>(res)),
+
+  finalizeDraft: (id: string, data: Partial<CreateIncidentInput>): Promise<Incident> =>
+    fetch(`${BASE_URL}/${id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...data, status: 'open' }),
+    }).then((res) => handleResponse<Incident>(res)),
+
+  cancelDraft: (id: string): Promise<void> =>
+    fetch(`${BASE_URL}/${id}/draft`, { method: 'DELETE' }).then(() => undefined),
+
   update: (id: string, changes: UpdateIncidentInput): Promise<Incident> =>
     fetch(`${BASE_URL}/${id}`, {
       method: 'PATCH',
@@ -33,4 +50,16 @@ export const incidentApi = {
 
   remove: (id: string): Promise<void> =>
     fetch(`${BASE_URL}/${id}`, { method: 'DELETE' }).then(() => undefined),
+
+  uploadMedia: (id: string, file: File): Promise<{ id: string; name: string; url: string }> => {
+    const formData = new FormData();
+    formData.append('file', file);
+    return fetch(`${BASE_URL}/${id}/media`, {
+      method: 'POST',
+      body: formData,
+    }).then((res) => handleResponse<{ id: string; name: string; url: string }>(res));
+  },
+
+  deleteMedia: (id: string, mediaId: string): Promise<void> =>
+    fetch(`${BASE_URL}/${id}/media/${mediaId}`, { method: 'DELETE' }).then(() => undefined),
 };

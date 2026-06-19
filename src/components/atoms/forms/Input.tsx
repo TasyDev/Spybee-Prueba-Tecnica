@@ -7,6 +7,7 @@ export interface InputProps {
   placeholder?: string;
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
   disabled?: boolean;
   hasError?: boolean;
   className?: string;
@@ -20,6 +21,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     placeholder,
     value,
     onChange,
+    onBlur,
     disabled = false,
     hasError = false,
     className,
@@ -35,6 +37,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        onBlur={onBlur}
         disabled={disabled}
         className={clsx(
           styles.input,

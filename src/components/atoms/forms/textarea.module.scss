@@ -1,0 +1,24 @@
+.textarea {
+  width: 100%;
+  padding: 8px 12px;
+  background-color: #171309;
+  border: 1px solid #9A9078;
+  border-radius: 6px;
+  color: #EBE1D1;
+  font-size: 14px;
+  resize: vertical;
+  font-family: inherit;
+
+  &--error {
+    border-color: #EF4444;
+  }
+
+  &--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &::placeholder {
+    color: #9A9078;
+  }
+}
