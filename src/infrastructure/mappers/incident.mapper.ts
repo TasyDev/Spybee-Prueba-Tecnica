@@ -10,7 +10,7 @@ import { TagMapper } from "./tag.mapper"
 
 export class IncidentMapper {
   static toDomain(row: any): Incident {
-    return Incident.create({
+    const entity = Incident.create({
       id: row.id,
       sequenceId: row.sequenceId,
       orderId: row.orderId,
@@ -35,28 +35,44 @@ export class IncidentMapper {
       tagIds: row.tagsMapping?.map((t: any) => t.tagId) ?? [],
       mediaIds: row.media?.map((m: any) => m.id) ?? [],
     })
+    Object.defineProperty(entity, '__joined', {
+      value: {
+        type: row.type,
+        project: row.project,
+        owner: row.owner,
+        media: row.media,
+        tagsMapping: row.tagsMapping,
+        assignees: row.assignees,
+        observers: row.observers,
+      },
+      enumerable: false,
+      writable: false,
+      configurable: false,
+    })
+    return entity
   }
 
-  static toResponse(entity: Incident, row?: any): any {
-    const type = row?.type
-      ? IncidentTypeMapper.toResponse(row.type)
+  static toResponse(entity: Incident): any {
+    const j = (entity as any).__joined
+    const type = j?.type
+      ? IncidentTypeMapper.toResponse(j.type)
       : { id: entity.typeId }
-    const project = row?.project
-      ? ProjectMapper.toResponse(row.project)
+    const project = j?.project
+      ? ProjectMapper.toResponse(j.project)
       : { id: entity.projectId }
-    const owner = row?.owner
-      ? UserMapper.toResponse(row.owner)
+    const owner = j?.owner
+      ? UserMapper.toResponse(j.owner)
       : { id: entity.ownerId }
-    const assignees = row?.assignees?.map((a: any) =>
+    const assignees = j?.assignees?.map((a: any) =>
       UserMapper.toResponse(a.user)
     ) ?? []
-    const observers = row?.observers?.map((o: any) =>
+    const observers = j?.observers?.map((o: any) =>
       UserMapper.toResponse(o.user)
     ) ?? []
-    const media = row?.media?.map((m: any) =>
+    const media = j?.media?.map((m: any) =>
       MediaMapper.toResponse(MediaMapper.toDomain(m))
     ) ?? []
-    const tags = row?.tagsMapping?.map((t: any) =>
+    const tags = j?.tagsMapping?.map((t: any) =>
       TagMapper.toResponse(t.tag)
     ) ?? []
 

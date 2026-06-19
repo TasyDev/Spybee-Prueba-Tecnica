@@ -52,6 +52,9 @@ export interface MapViewProps {
   incidents: Incident[];
   selectedId?: string | null;
   onIncidentClick?: (id: string | null) => void;
+  isCreationMode?: boolean;
+  onMapClick?: (coordinates: { lat: number; lng: number }) => void;
+  onViewDetails?: (id: string) => void;
   className?: string;
 }
 
@@ -69,7 +72,7 @@ const tokenErrorStyle: React.CSSProperties = {
 };
 
 export const MapView = forwardRef<MapViewRef, MapViewProps>(
-  function MapView({ incidents, selectedId, onIncidentClick, className }: MapViewProps, ref) {
+  function MapView({ incidents, selectedId, onIncidentClick, isCreationMode, onMapClick, onViewDetails, className }: MapViewProps, ref) {
     const containerRef = useRef<HTMLDivElement>(null);
     const mapRef = useRef<mapboxgl.Map | null>(null);
     const incidentsRef = useRef(incidents);
@@ -204,6 +207,10 @@ export const MapView = forwardRef<MapViewRef, MapViewProps>(
         });
 
         map.on('click', 'incidents-circle', (e) => {
+          if (isCreationMode) {
+            e.originalEvent.stopPropagation();
+            return;
+          }
           const id = e.features?.[0]?.properties?.id as string | undefined;
           if (!id) return;
           const incident = findIncidentById(id);
@@ -265,6 +272,38 @@ export const MapView = forwardRef<MapViewRef, MapViewProps>(
 
     useEffect(() => {
       const map = mapRef.current;
+      if (!map) return;
+
+      function handleMapClick(e: mapboxgl.MapMouseEvent) {
+        if (!map) return;
+        const features = map.queryRenderedFeatures(e.point, {
+          layers: ['incidents-circle'],
+        });
+        if (features.length === 0) {
+          onMapClick?.({ lat: e.lngLat.lat, lng: e.lngLat.lng });
+        }
+      }
+
+      if (isCreationMode) {
+        const c = map.getCanvas();
+        if (c) c.style.cursor = 'crosshair';
+        map.on('click', handleMapClick);
+      } else {
+        const c = map.getCanvas();
+        if (c) c.style.cursor = '';
+        map.off('click', handleMapClick);
+      }
+
+      return () => {
+        if (!map) return;
+        const c = map.getCanvas();
+        if (c) c.style.cursor = '';
+        map.off('click', handleMapClick);
+      };
+    }, [isCreationMode, onMapClick]);
+
+    useEffect(() => {
+      const map = mapRef.current;
       if (!map || !map.isStyleLoaded()) return;
 
       const features = map.querySourceFeatures('incidents');
@@ -318,6 +357,7 @@ export const MapView = forwardRef<MapViewRef, MapViewProps>(
                 setDetailPos(null);
                 onIncidentClick?.(null);
               }}
+              onViewDetails={onViewDetails}
             />
           </div>
         )}

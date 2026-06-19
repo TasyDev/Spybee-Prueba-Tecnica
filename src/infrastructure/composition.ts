@@ -21,6 +21,7 @@ import { DetachTagUseCase } from "@application/use-cases/incident/detach-tag.use
 import { UploadMediaUseCase } from "@application/use-cases/incident/upload-media.use-case"
 import { UpdateMediaUseCase } from "@application/use-cases/incident/update-media.use-case"
 import { DeleteMediaUseCase } from "@application/use-cases/incident/delete-media.use-case"
+import { CancelDraftUseCase } from "@application/use-cases/incident/cancel-draft.use-case"
 import { ListIncidentsByProjectUseCase } from "@application/use-cases/incident/list-incidents-by-project.use-case"
 import { ListIncidentsByIncidentTypeUseCase } from "@application/use-cases/incident/list-incidents-by-incident-type.use-case"
 import { ListIncidentsByUserUseCase } from "@application/use-cases/incident/list-incidents-by-user.use-case"
@@ -90,6 +91,7 @@ function buildComposition() {
   const uploadMediaUseCase = new UploadMediaUseCase(incidentRepository, storageService)
   const updateMediaUseCase = new UpdateMediaUseCase(incidentRepository)
   const deleteMediaUseCase = new DeleteMediaUseCase(incidentRepository, storageService)
+  const cancelDraftUseCase = new CancelDraftUseCase(incidentRepository, storageService)
   const listIncidentsByProjectUseCase = new ListIncidentsByProjectUseCase(incidentRepository)
   const listIncidentsByIncidentTypeUseCase = new ListIncidentsByIncidentTypeUseCase(incidentRepository)
   const listIncidentsByUserUseCase = new ListIncidentsByUserUseCase(incidentRepository)
@@ -140,6 +142,7 @@ function buildComposition() {
     uploadMediaUseCase,
     updateMediaUseCase,
     deleteMediaUseCase,
+    cancelDraftUseCase,
   })
 
   const projectRouter = createProjectRouter({

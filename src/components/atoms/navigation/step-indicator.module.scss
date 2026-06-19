@@ -1,0 +1,64 @@
+.stepIndicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stepIndicator__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &--clickable {
+    cursor: pointer;
+  }
+}
+
+.stepIndicator__circle {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #2a2518;
+  border: 1px solid #9A9078;
+  color: #9A9078;
+  font-size: 12px;
+  font-weight: 600;
+
+  &--active {
+    background-color: #695200;
+    border-color: #695200;
+    color: #EBE1D1;
+  }
+
+  &--completed {
+    background-color: #695200;
+    border-color: #695200;
+    color: #EBE1D1;
+  }
+}
+
+.stepIndicator__check {
+  font-size: 14px;
+}
+
+.stepIndicator__label {
+  font-size: 12px;
+  color: #9A9078;
+
+  &--active {
+    color: #EBE1D1;
+  }
+}
+
+.stepIndicator__line {
+  width: 24px;
+  height: 1px;
+  background-color: #9A9078;
+
+  &--completed {
+    background-color: #695200;
+  }
+}

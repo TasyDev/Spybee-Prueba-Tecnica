@@ -14,6 +14,10 @@ export const createIncidentSchema = z.object({
   locationDescription: z.string().optional(),
   dueDate: z.string().datetime().optional(),
   whatsappOwner: z.string().optional(),
+  assigneeIds: z.array(z.string()).optional(),
+  observerIds: z.array(z.string()).optional(),
+  tagIds: z.array(z.string()).optional(),
+  status: z.enum(["open", "draft"]).optional(),
 })
 
 export type CreateIncidentSchema = z.infer<typeof createIncidentSchema>

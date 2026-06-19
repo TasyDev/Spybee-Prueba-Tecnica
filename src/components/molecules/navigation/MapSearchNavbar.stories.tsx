@@ -17,6 +17,14 @@ function StatefulNavbar() {
   const [priorityFilter, setPriorityFilter] = useState<Priority[]>([]);
   const [statusFilter, setStatusFilter] = useState<Status[]>([]);
   const [typeFilter, setTypeFilter] = useState<string[]>([]);
+  const [projectFilter, setProjectFilter] = useState<string[]>([]);
+  const [assigneeFilter, setAssigneeFilter] = useState<string[]>([]);
+  const [observerFilter, setObserverFilter] = useState<string[]>([]);
+  const [ownerFilter, setOwnerFilter] = useState<string[]>([]);
+
+  const toggle = (id: string, list: string[], setList: (v: string[]) => void) => {
+    setList(list.includes(id) ? list.filter((x) => x !== id) : [...list, id]);
+  };
 
   const togglePriority = (priority: Priority) => {
     setPriorityFilter((prev) =>
@@ -27,12 +35,6 @@ function StatefulNavbar() {
   const toggleStatus = (status: Status) => {
     setStatusFilter((prev) =>
       prev.includes(status) ? prev.filter((s) => s !== status) : [...prev, status],
-    );
-  };
-
-  const toggleType = (typeId: string) => {
-    setTypeFilter((prev) =>
-      prev.includes(typeId) ? prev.filter((t) => t !== typeId) : [...prev, typeId],
     );
   };
 
@@ -51,8 +53,33 @@ function StatefulNavbar() {
         { id: '3', name: 'Plumbing' },
         { id: '4', name: 'Safety' },
       ]}
-      onTypeChange={toggleType}
+      onTypeChange={(id) => toggle(id, typeFilter, setTypeFilter)}
+      projectFilter={projectFilter}
+      projectOptions={[
+        { id: 'p1', name: 'Torre Acqua' },
+        { id: 'p2', name: 'Altos del Bosque' },
+      ]}
+      onProjectChange={(id) => toggle(id, projectFilter, setProjectFilter)}
+      assigneeFilter={assigneeFilter}
+      assigneeOptions={[
+        { id: 'u1', name: 'Juan Perez' },
+        { id: 'u2', name: 'Maria Lopez' },
+      ]}
+      onAssigneeChange={(id) => toggle(id, assigneeFilter, setAssigneeFilter)}
+      observerFilter={observerFilter}
+      observerOptions={[
+        { id: 'u1', name: 'Juan Perez' },
+        { id: 'u2', name: 'Maria Lopez' },
+      ]}
+      onObserverChange={(id) => toggle(id, observerFilter, setObserverFilter)}
+      ownerFilter={ownerFilter}
+      ownerOptions={[
+        { id: 'u1', name: 'Juan Perez' },
+        { id: 'u2', name: 'Maria Lopez' },
+      ]}
+      onOwnerChange={(id) => toggle(id, ownerFilter, setOwnerFilter)}
       onRecenter={() => console.log('recenter')}
+      onCreateClick={() => console.log('create')}
     />
   );
 }
@@ -77,6 +104,19 @@ export const WithValues: Story = {
       { id: '4', name: 'Safety' },
     ],
     onTypeChange: () => {},
+    projectFilter: [],
+    projectOptions: [],
+    onProjectChange: () => {},
+    assigneeFilter: [],
+    assigneeOptions: [],
+    onAssigneeChange: () => {},
+    observerFilter: [],
+    observerOptions: [],
+    onObserverChange: () => {},
+    ownerFilter: [],
+    ownerOptions: [],
+    onOwnerChange: () => {},
     onRecenter: () => {},
+    onCreateClick: () => {},
   },
 };

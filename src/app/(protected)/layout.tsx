@@ -5,8 +5,8 @@ import { Sidebar } from '@/components/organisms/navigation/Sidebar';
 import styles from './protected-layout.module.scss';
 
 export const metadata: Metadata = {
-  title: 'SpyBee — Protected',
-  description: 'Protected pages',
+  title: 'SpyBee — Protegido',
+  description: 'Páginas protegidas',
 };
 
 export default async function ProtectedLayout({
@@ -21,7 +21,7 @@ export default async function ProtectedLayout({
     redirect('/login');
   }
 
-  const userName = user.user_metadata?.full_name || user.email?.split('@')[0] || 'User';
+  const userName = user.user_metadata?.full_name || user.email?.split('@')[0] || 'Usuario';
   const avatarUrl = user.user_metadata?.avatar_url || '';
 
   return (
@@ -29,7 +29,7 @@ export default async function ProtectedLayout({
       <Sidebar
         user={{
           name: userName,
-          role: 'Admin',
+          role: 'Administrador',
           avatarUrl,
         }}
       />

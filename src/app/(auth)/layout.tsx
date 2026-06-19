@@ -3,8 +3,8 @@ import { TopNav } from "@/components/organisms/navigation/TopNav";
 import "./auth-layout.scss";
 
 export const metadata: Metadata = {
-  title: "SpyBee — Auth",
-  description: "Authentication pages",
+  title: "SpyBee — Autenticación",
+  description: "Páginas de autenticación",
 };
 
 export default function AuthLayout({

@@ -68,6 +68,24 @@ export interface Incident {
   updatedAt: string;
 }
 
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  avatarUrl?: string;
+}
+
+export interface Tag {
+  id: string;
+  name: string;
+  color?: string;
+}
+
+export interface Project {
+  id: string;
+  name: string;
+}
+
 export interface IncidentType {
   id: string;
   key: string;
@@ -80,6 +98,10 @@ export interface Filters {
   priority: Priority[];
   type: string[];
   search: string;
+  project: string[];
+  assignee: string[];
+  observer: string[];
+  owner: string[];
 }
 
 export interface CreateIncidentInput {
@@ -93,6 +115,9 @@ export interface CreateIncidentInput {
   locationDescription?: string;
   dueDate?: string;
   whatsappOwner?: string;
+  assigneeIds?: string[];
+  observerIds?: string[];
+  tagIds?: string[];
 }
 
 export interface UpdateIncidentInput {

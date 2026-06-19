@@ -17,7 +17,7 @@ export class CreateIncidentUseCase {
       title: dto.title,
       description: dto.description,
       priority: dto.priority,
-      status: IncidentStatus.open,
+      status: dto.status ?? IncidentStatus.open,
       approval: false,
       deleted: false,
       projectId: dto.projectId ?? null,
@@ -30,9 +30,9 @@ export class CreateIncidentUseCase {
       updatedAt: now,
       dueDate: dto.dueDate ?? null,
       closingDate: null,
-      assigneeIds: [],
-      observerIds: [],
-      tagIds: [],
+      assigneeIds: dto.assigneeIds ?? [],
+      observerIds: dto.observerIds ?? [],
+      tagIds: dto.tagIds ?? [],
       mediaIds: [],
     })
     return this.incidentRepository.save(incident)

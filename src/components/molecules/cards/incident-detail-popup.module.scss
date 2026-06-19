@@ -145,4 +145,24 @@
       color: $color-text-muted;
     }
   }
+
+  &__viewBtn {
+    display: block;
+    width: 100%;
+    padding: space(2);
+    margin-top: space(2);
+    background: rgba($color-primary-container, 0.20);
+    border: 1px solid rgba($color-primary-container, 0.50);
+    border-radius: $radius-lg;
+    color: $color-on-surface;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    @include transition;
+
+    &:hover {
+      background: rgba($color-primary-container, 0.40);
+    }
+  }
 }
