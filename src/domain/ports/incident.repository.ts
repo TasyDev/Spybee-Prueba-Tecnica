@@ -22,9 +22,11 @@ export interface IIncidentRepository {
   findById(id: string): Promise<Incident | null>
   findByIdIncludingDeleted(id: string): Promise<Incident | null>
   findMediaById(mediaId: string): Promise<Media | null>
+  findMediaByIncidentId(incidentId: string): Promise<Media[]>
   save(incident: Incident): Promise<Incident>
   update(incident: Incident): Promise<Incident>
   softDelete(id: string): Promise<void>
+  hardDelete(id: string): Promise<void>
   restore(id: string): Promise<void>
   addAssignee(incidentId: string, userId: string): Promise<void>
   removeAssignee(incidentId: string, userId: string): Promise<void>

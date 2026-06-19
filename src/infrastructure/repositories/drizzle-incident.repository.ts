@@ -1,4 +1,4 @@
-import { eq, and, or, isNull, asc, desc, inArray } from "drizzle-orm"
+import { eq, ne, and, or, isNull, asc, desc, inArray } from "drizzle-orm"
 import { IIncidentRepository, IncidentFilters } from "@domain/ports/incident.repository"
 import { Incident } from "@domain/entities/incident.entity"
 import { Media } from "@domain/entities/media.entity"
@@ -38,6 +38,8 @@ export class DrizzleIncidentRepository implements IIncidentRepository {
     } else {
       conditions.push(or(eq(incidents.deleted, false), isNull(incidents.deleted)))
     }
+
+    conditions.push(ne(incidents.status, "draft"))
 
     const where = conditions.length > 0 ? and(...conditions) : undefined
 
@@ -135,29 +137,56 @@ export class DrizzleIncidentRepository implements IIncidentRepository {
     return MediaMapper.toDomain(row)
   }
 
+  async findMediaByIncidentId(incidentId: string): Promise<Media[]> {
+    const rows = await this.db.query.media.findMany({
+      where: eq(media.incidentId, incidentId),
+    })
+    return rows.map((row: any) => MediaMapper.toDomain(row))
+  }
+
   async save(incident: Incident): Promise<Incident> {
     const props = incident.toProps()
-    await this.db.insert(incidents).values({
-      id: props.id,
-      sequenceId: props.sequenceId,
-      orderId: props.orderId,
-      title: props.title,
-      description: props.description,
-      priority: props.priority,
-      status: props.status,
-      approval: props.approval,
-      deleted: props.deleted,
-      projectId: props.projectId,
-      typeId: props.typeId,
-      ownerId: props.ownerId,
-      whatsappOwner: props.whatsappOwner,
-      latitude: props.location.latitude,
-      longitude: props.location.longitude,
-      locationDescription: props.locationDescription,
-      createdAt: props.createdAt,
-      updatedAt: props.updatedAt,
-      dueDate: props.dueDate,
-      closingDate: props.closingDate,
+    await this.db.transaction(async (tx: any) => {
+      await tx.insert(incidents).values({
+        id: props.id,
+        sequenceId: props.sequenceId,
+        orderId: props.orderId,
+        title: props.title,
+        description: props.description,
+        priority: props.priority,
+        status: props.status,
+        approval: props.approval,
+        deleted: props.deleted,
+        projectId: props.projectId,
+        typeId: props.typeId,
+        ownerId: props.ownerId,
+        whatsappOwner: props.whatsappOwner,
+        latitude: props.location.latitude,
+        longitude: props.location.longitude,
+        locationDescription: props.locationDescription,
+        createdAt: props.createdAt,
+        updatedAt: props.updatedAt,
+        dueDate: props.dueDate,
+        closingDate: props.closingDate,
+      })
+
+      if (props.assigneeIds.length > 0) {
+        await tx.insert(incidentAssignees).values(
+          props.assigneeIds.map((userId) => ({ incidentId: props.id, userId }))
+        )
+      }
+
+      if (props.observerIds.length > 0) {
+        await tx.insert(incidentObservers).values(
+          props.observerIds.map((userId) => ({ incidentId: props.id, userId }))
+        )
+      }
+
+      if (props.tagIds.length > 0) {
+        await tx.insert(incidentTagsMapping).values(
+          props.tagIds.map((tagId) => ({ incidentId: props.id, tagId }))
+        )
+      }
     })
     return this.findById(props.id) as Promise<Incident>
   }
@@ -192,6 +221,10 @@ export class DrizzleIncidentRepository implements IIncidentRepository {
       deleted: true,
       updatedAt: new Date(),
     }).where(eq(incidents.id, id))
+  }
+
+  async hardDelete(id: string): Promise<void> {
+    await this.db.delete(incidents).where(eq(incidents.id, id))
   }
 
   async restore(id: string): Promise<void> {

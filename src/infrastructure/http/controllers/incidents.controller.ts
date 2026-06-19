@@ -24,6 +24,7 @@ export function createIncidentRouter(deps: {
   uploadMediaUseCase: any
   updateMediaUseCase: any
   deleteMediaUseCase: any
+  cancelDraftUseCase: any
 }) {
   const router = new Hono()
 
@@ -69,6 +70,10 @@ export function createIncidentRouter(deps: {
       locationDescription: body.locationDescription,
       dueDate: body.dueDate ? new Date(body.dueDate) : undefined,
       whatsappOwner: body.whatsappOwner ?? undefined,
+      assigneeIds: body.assigneeIds,
+      observerIds: body.observerIds,
+      tagIds: body.tagIds,
+      status: body.status,
     })
     return c.json(IncidentMapper.toResponse(incident), 201)
   })
@@ -103,6 +108,12 @@ export function createIncidentRouter(deps: {
     const id = c.req.param("id")
     await deps.restoreIncidentUseCase.execute(id)
     return c.json({ success: true })
+  })
+
+  router.delete("/:id/draft", async (c) => {
+    const id = c.req.param("id")
+    await deps.cancelDraftUseCase.execute(id)
+    return c.body(null, 204)
   })
 
   router.post("/:id/assignees", async (c) => {
@@ -149,8 +160,8 @@ export function createIncidentRouter(deps: {
 
   router.post("/:id/media", async (c) => {
     const incidentId = c.req.param("id")
-    const body = await c.req.parseBody()
-    const file = body.file as File
+    const formData = await c.req.formData()
+    const file = formData.get("file")
     
     if (!file || !(file instanceof File)) {
       return c.json({ error: "No file provided" }, 400)

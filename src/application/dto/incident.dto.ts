@@ -13,6 +13,10 @@ export interface CreateIncidentDto {
   locationDescription?: string
   dueDate?: Date | null
   whatsappOwner?: string | null
+  assigneeIds?: string[]
+  observerIds?: string[]
+  tagIds?: string[]
+  status?: IncidentStatus
 }
 
 export interface PatchIncidentDto {
