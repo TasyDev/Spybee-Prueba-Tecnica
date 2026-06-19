@@ -37,13 +37,13 @@ export function Sidebar({ user, logoElement, activeItem: activeItemProp, classNa
       <nav className={styles.sidebar__nav}>
         <NavItem
           icon={<Icon name="map" size={18} />}
-          label="Map"
+          label="Mapa"
           href="/map"
           isActive={activeItem === 'map'}
         />
         <NavItem
           icon={<Icon name="layout" size={18} />}
-          label="Dashboards"
+          label="Tableros"
           href="/dashboard"
           isActive={activeItem === 'dashboards'}
         />
@@ -52,7 +52,7 @@ export function Sidebar({ user, logoElement, activeItem: activeItemProp, classNa
       <div className={styles.sidebar__footer}>
         <NavItem
           icon={<Icon name="settings" size={18} />}
-          label="Settings"
+          label="Configuración"
           href="/settings"
           isActive={activeItem === 'settings'}
         />

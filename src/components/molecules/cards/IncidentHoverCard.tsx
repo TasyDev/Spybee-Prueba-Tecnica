@@ -10,7 +10,7 @@ export interface IncidentHoverCardProps {
 export function IncidentHoverCard({ incident, className }: IncidentHoverCardProps) {
   const assigneeCount = incident.assignees?.length ?? 0;
   const observerCount = incident.observers?.length ?? 0;
-  const ownerName = incident.owner?.name ?? 'Unknown';
+  const ownerName = incident.owner?.name ?? 'Desconocido';
 
   return (
     <div className={clsx(styles.incidentHoverCard, className)}>

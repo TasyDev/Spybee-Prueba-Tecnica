@@ -3,7 +3,7 @@ import "../styles/globals.scss";
 
 export const metadata: Metadata = {
   title: "SpyBee",
-  description: "Incident management system",
+  description: "Sistema de gestión de incidencias",
 };
 
 export default function RootLayout({
@@ -12,7 +12,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased">
+    <html lang="es" className="h-full antialiased">
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );

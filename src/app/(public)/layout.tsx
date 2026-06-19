@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "SpyBee — Public",
-  description: "Public pages",
+  title: "SpyBee — Público",
+  description: "Páginas públicas",
 };
 
 export default function PublicLayout({

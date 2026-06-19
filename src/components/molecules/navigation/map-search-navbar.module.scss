@@ -62,6 +62,32 @@
     border-left: 1px solid rgba($color-outline-variant, 0.30);
   }
 
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: space(2);
+    padding-left: space(3);
+    border-left: 1px solid rgba($color-outline-variant, 0.30);
+  }
+
+  &__create {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: rgba($color-primary-container, 0.30);
+    border: 1px solid rgba($color-primary-container, 0.50);
+    border-radius: $radius-full;
+    cursor: pointer;
+    @include transition;
+
+    &:hover {
+      background: rgba($color-primary-container, 0.50);
+      border-color: rgba($color-primary-container, 0.80);
+    }
+  }
+
   &__recenter {
     display: inline-flex;
     align-items: center;
