@@ -1,6 +1,7 @@
 import { getDb } from "@db/client"
 
 import { DrizzleIncidentRepository } from "@repositories/drizzle-incident.repository"
+import { DrizzleIncidentAnalyticsRepository } from "@repositories/drizzle-incident-analytics.repository"
 import { DrizzleProjectRepository } from "@repositories/drizzle-project.repository"
 import { DrizzleUserRepository } from "@repositories/drizzle-user.repository"
 import { DrizzleTagRepository } from "@repositories/drizzle-tag.repository"
@@ -26,6 +27,22 @@ import { ListIncidentsByProjectUseCase } from "@application/use-cases/incident/l
 import { ListIncidentsByIncidentTypeUseCase } from "@application/use-cases/incident/list-incidents-by-incident-type.use-case"
 import { ListIncidentsByUserUseCase } from "@application/use-cases/incident/list-incidents-by-user.use-case"
 import { ListIncidentsByTagUseCase } from "@application/use-cases/incident/list-incidents-by-tag.use-case"
+
+import { GetStatusBreakdownUseCase } from "@application/use-cases/dashboard/get-status-breakdown.use-case"
+import { GetPriorityBreakdownUseCase } from "@application/use-cases/dashboard/get-priority-breakdown.use-case"
+import { GetPriorityXStatusUseCase } from "@application/use-cases/dashboard/get-priority-x-status.use-case"
+import { GetOverdueRateUseCase } from "@application/use-cases/dashboard/get-overdue-rate.use-case"
+import { GetOverdueSeverityDaysUseCase } from "@application/use-cases/dashboard/get-overdue-severity-days.use-case"
+import { GetResolutionTimeUseCase } from "@application/use-cases/dashboard/get-resolution-time.use-case"
+import { GetApprovalRateByTypeUseCase } from "@application/use-cases/dashboard/get-approval-rate-by-type.use-case"
+import { GetOverdueRateByTypeUseCase } from "@application/use-cases/dashboard/get-overdue-rate-by-type.use-case"
+import { GetProjectComparisonUseCase } from "@application/use-cases/dashboard/get-project-comparison.use-case"
+import { GetMonthlyTrendUseCase } from "@application/use-cases/dashboard/get-monthly-trend.use-case"
+import { GetTopTagsUseCase } from "@application/use-cases/dashboard/get-top-tags.use-case"
+import { GetTagsXPriorityUseCase } from "@application/use-cases/dashboard/get-tags-x-priority.use-case"
+import { GetOwnerWorkloadUseCase } from "@application/use-cases/dashboard/get-owner-workload.use-case"
+import { GetAssigneeWorkloadUseCase } from "@application/use-cases/dashboard/get-assignee-workload.use-case"
+import { GetAvgAssigneesByPriorityUseCase } from "@application/use-cases/dashboard/get-avg-assignees-by-priority.use-case"
 
 import { ListProjectsUseCase } from "@application/use-cases/project/list-projects.use-case"
 import { GetProjectByIdUseCase } from "@application/use-cases/project/get-project-by-id.use-case"
@@ -56,6 +73,8 @@ import { createProjectRouter } from "@http/controllers/projects.controller"
 import { createUserRouter } from "@http/controllers/users.controller"
 import { createTagRouter } from "@http/controllers/tags.controller"
 import { createIncidentTypeRouter } from "@http/controllers/incident-types.controller"
+
+import { createDashboardRouter } from "@http/controllers/dashboard.controller"
 
 import { createApp } from "@http/app"
 import { SupabaseStorageService } from "@infrastructure/services/supabase-storage.service"
@@ -125,6 +144,24 @@ function buildComposition() {
   const patchIncidentTypeUseCase = new PatchIncidentTypeUseCase(incidentTypeRepository)
   const deleteIncidentTypeUseCase = new DeleteIncidentTypeUseCase(incidentTypeRepository)
 
+  // Dashboard / Analytics
+  const incidentAnalyticsRepository = new DrizzleIncidentAnalyticsRepository(db)
+  const getStatusBreakdownUseCase = new GetStatusBreakdownUseCase(incidentAnalyticsRepository)
+  const getPriorityBreakdownUseCase = new GetPriorityBreakdownUseCase(incidentAnalyticsRepository)
+  const getPriorityXStatusUseCase = new GetPriorityXStatusUseCase(incidentAnalyticsRepository)
+  const getOverdueRateUseCase = new GetOverdueRateUseCase(incidentAnalyticsRepository)
+  const getOverdueSeverityDaysUseCase = new GetOverdueSeverityDaysUseCase(incidentAnalyticsRepository)
+  const getResolutionTimeUseCase = new GetResolutionTimeUseCase(incidentAnalyticsRepository)
+  const getApprovalRateByTypeUseCase = new GetApprovalRateByTypeUseCase(incidentAnalyticsRepository)
+  const getOverdueRateByTypeUseCase = new GetOverdueRateByTypeUseCase(incidentAnalyticsRepository)
+  const getProjectComparisonUseCase = new GetProjectComparisonUseCase(incidentAnalyticsRepository)
+  const getMonthlyTrendUseCase = new GetMonthlyTrendUseCase(incidentAnalyticsRepository)
+  const getTopTagsUseCase = new GetTopTagsUseCase(incidentAnalyticsRepository)
+  const getTagsXPriorityUseCase = new GetTagsXPriorityUseCase(incidentAnalyticsRepository)
+  const getOwnerWorkloadUseCase = new GetOwnerWorkloadUseCase(incidentAnalyticsRepository)
+  const getAssigneeWorkloadUseCase = new GetAssigneeWorkloadUseCase(incidentAnalyticsRepository)
+  const getAvgAssigneesByPriorityUseCase = new GetAvgAssigneesByPriorityUseCase(incidentAnalyticsRepository)
+
   // Routers
   const incidentRouter = createIncidentRouter({
     listIncidentsUseCase,
@@ -181,6 +218,24 @@ function buildComposition() {
     deleteIncidentTypeUseCase,
   })
 
+  const dashboardRouter = createDashboardRouter({
+    getStatusBreakdownUseCase,
+    getPriorityBreakdownUseCase,
+    getPriorityXStatusUseCase,
+    getOverdueRateUseCase,
+    getOverdueSeverityDaysUseCase,
+    getResolutionTimeUseCase,
+    getApprovalRateByTypeUseCase,
+    getOverdueRateByTypeUseCase,
+    getProjectComparisonUseCase,
+    getMonthlyTrendUseCase,
+    getTopTagsUseCase,
+    getTagsXPriorityUseCase,
+    getOwnerWorkloadUseCase,
+    getAssigneeWorkloadUseCase,
+    getAvgAssigneesByPriorityUseCase,
+  })
+
   // App
   const app = createApp({
     incidentRouter,
@@ -188,6 +243,7 @@ function buildComposition() {
     userRouter,
     tagRouter,
     incidentTypeRouter,
+    dashboardRouter,
   })
 
   return { app }

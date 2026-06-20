@@ -168,7 +168,7 @@ export const MapView = forwardRef<MapViewRef, MapViewProps>(
           id: 'incidents-heat',
           type: 'heatmap',
           source: 'incidents',
-          maxzoom: 17,
+            maxzoom: 18,
           paint: {
             'heatmap-weight': ['match', ['get', 'priority'], 'high', 1, 'medium', 0.6, 0.3],
             'heatmap-intensity': 1,
@@ -181,7 +181,7 @@ export const MapView = forwardRef<MapViewRef, MapViewProps>(
           id: 'incidents-circle',
           type: 'circle',
           source: 'incidents',
-          minzoom: 11,
+          minzoom: 15,
           paint: {
             'circle-radius': [
               'case',

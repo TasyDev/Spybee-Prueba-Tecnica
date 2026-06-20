@@ -7,6 +7,7 @@ export function createApp(deps: {
   userRouter: Hono
   tagRouter: Hono
   incidentTypeRouter: Hono
+  dashboardRouter: Hono
 }) {
   const app = new Hono().basePath("/api")
 
@@ -17,6 +18,7 @@ export function createApp(deps: {
   app.route("/users", deps.userRouter)
   app.route("/tags", deps.tagRouter)
   app.route("/incident-types", deps.incidentTypeRouter)
+  app.route("/dashboard", deps.dashboardRouter)
 
   return app
 }
