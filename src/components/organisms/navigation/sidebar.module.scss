@@ -7,6 +7,9 @@
   align-items: flex-start;
   width: 240px;
   height: 100vh;
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
   padding-top: space(6);
   padding-bottom: space(6);
   background: $color-surface-container-low;
