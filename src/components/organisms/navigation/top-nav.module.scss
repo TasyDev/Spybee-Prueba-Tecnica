@@ -1,0 +1,15 @@
+@use '../../../styles/abstracts' as *;
+
+.topNav {
+  display: flex;
+  align-items: center;
+  padding: space(8);
+  position: relative;
+  justify-content: flex-start;
+
+  > *:last-child {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

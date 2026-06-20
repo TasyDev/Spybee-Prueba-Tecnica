@@ -1,0 +1,23 @@
+@use '../../../styles/abstracts' as *;
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: space(2);
+  align-self: stretch;
+
+  &__title {
+    @include font-scale($font-h1);
+    color: $color-on-surface;
+    text-align: center;
+    margin: 0;
+  }
+
+  &__description {
+    @include font-scale($font-body);
+    color: $color-on-surface-variant;
+    text-align: center;
+    margin: 0;
+  }
+}

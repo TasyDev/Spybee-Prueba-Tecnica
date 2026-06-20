@@ -1,0 +1,22 @@
+@use '../../../styles/abstracts' as *;
+
+.icon {
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: middle;
+
+  &--envelope { color: $color-on-surface-variant; }
+  &--lock { color: $color-on-surface-variant; }
+  &--eye { color: $color-on-surface-variant; }
+  &--eye-slash { color: $color-on-surface-variant; }
+  &--chevron-right { color: $color-on-surface-variant; }
+  &--chevron-left { color: $color-on-surface-variant; }
+  &--loader {
+    animation: spin 1s linear infinite;
+  }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

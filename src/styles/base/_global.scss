@@ -1,0 +1,167 @@
+@use '../abstracts' as *;
+
+// ===========================================
+// RESET
+// ===========================================
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  -moz-tab-size: 4;
+  tab-size: 4;
+}
+
+body {
+  font-family: $font-family;
+  background-color: $color-background;
+  color: $color-on-surface;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+// ===========================================
+// CSS CUSTOM PROPERTIES (runtime tokens)
+// ===========================================
+
+:root {
+  // Colors
+  --color-surface: #{$color-surface};
+  --color-surface-dim: #{$color-surface-dim};
+  --color-surface-bright: #{$color-surface-bright};
+  --color-surface-container-lowest: #{$color-surface-container-lowest};
+  --color-surface-container-low: #{$color-surface-container-low};
+  --color-surface-container: #{$color-surface-container};
+  --color-surface-container-high: #{$color-surface-container-high};
+  --color-surface-container-highest: #{$color-surface-container-highest};
+  --color-on-surface: #{$color-on-surface};
+  --color-on-surface-variant: #{$color-on-surface-variant};
+  --color-inverse-surface: #{$color-inverse-surface};
+  --color-inverse-on-surface: #{$color-inverse-on-surface};
+  --color-outline: #{$color-outline};
+  --color-outline-variant: #{$color-outline-variant};
+  --color-surface-tint: #{$color-surface-tint};
+  --color-primary: #{$color-primary};
+  --color-on-primary: #{$color-on-primary};
+  --color-primary-container: #{$color-primary-container};
+  --color-on-primary-container: #{$color-on-primary-container};
+  --color-inverse-primary: #{$color-inverse-primary};
+  --color-secondary: #{$color-secondary};
+  --color-on-secondary: #{$color-on-secondary};
+  --color-secondary-container: #{$color-secondary-container};
+  --color-on-secondary-container: #{$color-on-secondary-container};
+  --color-tertiary: #{$color-tertiary};
+  --color-on-tertiary: #{$color-on-tertiary};
+  --color-tertiary-container: #{$color-tertiary-container};
+  --color-on-tertiary-container: #{$color-on-tertiary-container};
+  --color-error: #{$color-error};
+  --color-on-error: #{$color-on-error};
+  --color-error-container: #{$color-error-container};
+  --color-on-error-container: #{$color-on-error-container};
+  --color-background: #{$color-background};
+  --color-on-background: #{$color-on-background};
+  --color-surface-variant: #{$color-surface-variant};
+  --color-elevation-0: #{$color-elevation-0};
+  --color-elevation-1: #{$color-elevation-1};
+  --color-elevation-2: #{$color-elevation-2};
+  --color-text-muted: #{$color-text-muted};
+  --color-border: #{$color-border};
+  --color-status-danger: #{$color-status-danger};
+  --color-status-warning: #{$color-status-warning};
+  --color-status-success: #{$color-status-success};
+  --color-tag-blue: #{$color-tag-blue};
+  --color-tag-indigo: #{$color-tag-indigo};
+  --color-tag-purple: #{$color-tag-purple};
+  --color-tag-teal: #{$color-tag-teal};
+
+  // Typography
+  --font-family: #{$font-family};
+  --font-weight-bold: #{$font-weight-bold};
+
+  // Spacing
+  --spacing-unit: #{$spacing-unit};
+  --spacing-gutter: #{$spacing-gutter};
+  --spacing-margin-mobile: #{$spacing-margin-mobile};
+  --spacing-margin-desktop: #{$spacing-margin-desktop};
+  --spacing-panel-gap: #{$spacing-panel-gap};
+
+  // Radius
+  --radius-sm: #{$radius-sm};
+  --radius-md: #{$radius-md};
+  --radius-lg: #{$radius-lg};
+  --radius-xl: #{$radius-xl};
+  --radius-full: #{$radius-full};
+  --radius-button: #{$radius-button};
+  --radius-card: #{$radius-card};
+  --radius-panel: #{$radius-panel};
+
+  // Shadows
+  --shadow-modal: #{$shadow-modal};
+  --shadow-button: #{$shadow-button};
+
+  // Transitions
+  --transition-fast: #{$transition-fast};
+  --transition-base: #{$transition-base};
+  --transition-slow: #{$transition-slow};
+
+  // Sizes
+  --size-form-max-width: #{$size-form-max-width};
+  --size-form-login-width: #{$size-form-login-width};
+  --padding-login-top: #{$padding-login-top};
+  --glass-bg: #{$glass-bg};
+  --glass-backdrop: #{$glass-backdrop};
+  --shadow-login: #{$shadow-login};
+
+  // Z-index
+  --z-base: #{$z-base};
+  --z-sticky: #{$z-sticky};
+  --z-dropdown: #{$z-dropdown};
+  --z-modal: #{$z-modal};
+  --z-toast: #{$z-toast};
+  --z-tooltip: #{$z-tooltip};
+}

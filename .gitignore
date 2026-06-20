@@ -43,3 +43,8 @@ storybook-static/
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# drizzle
+/drizzle/
+debug-storybook.log
+NUL

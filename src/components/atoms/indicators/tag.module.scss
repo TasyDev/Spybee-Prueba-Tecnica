@@ -1,0 +1,26 @@
+@use '../../../styles/abstracts' as *;
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: space(1) space(3);
+  border-radius: $radius-full;
+  border: none;
+  cursor: pointer;
+  @include font-scale($font-caption);
+  font-size: 12px;
+  line-height: 16px;
+  color: $color-on-surface-variant;
+  background: $color-surface-container-high;
+  outline: 1px solid rgba($color-outline-variant, 0.30);
+  outline-offset: -1px;
+
+  &--active {
+    background: $color-primary-container;
+    color: $color-on-primary-container;
+    font-weight: 700;
+    outline: none;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  }
+}

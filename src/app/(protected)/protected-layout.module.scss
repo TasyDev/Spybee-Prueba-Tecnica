@@ -1,0 +1,10 @@
+.protectedLayout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.protectedLayout__main {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}

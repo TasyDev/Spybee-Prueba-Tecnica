@@ -1,0 +1,54 @@
+.userSelector {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &__label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #EBE1D1;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-height: 180px;
+    overflow-y: auto;
+    border: 1px solid #9A9078;
+    border-radius: 6px;
+    padding: 4px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 10px;
+    border-radius: 4px;
+    background: none;
+    border: none;
+    color: #EBE1D1;
+    font-size: 13px;
+    cursor: pointer;
+    text-align: left;
+
+    &:hover {
+      background-color: #2a2518;
+    }
+
+    &--selected {
+      background-color: #2a2518;
+    }
+  }
+
+  &__name {
+    font-weight: 500;
+  }
+
+  &__email {
+    font-size: 11px;
+    color: #9A9078;
+    margin-left: 8px;
+  }
+}

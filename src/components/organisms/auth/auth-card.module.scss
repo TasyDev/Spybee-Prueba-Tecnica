@@ -1,0 +1,40 @@
+@use '../../../styles/abstracts' as *;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: space(8);
+  max-width: $size-form-login-width;
+  width: 100%;
+  margin-inline: auto;
+}
+
+.card {
+  width: 100%;
+  background-color: $color-surface-container-low;
+  border-radius: $radius-card;
+  outline: 1px solid $color-border;
+  outline-offset: -1px;
+  box-shadow: $shadow-login;
+  padding: $padding-login-top space(8) space(8);
+  position: relative;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: space(1);
+}
+
+.footerText {
+  @include font-scale($font-body);
+  color: $color-on-surface-variant;
+}
+
+.footerLink {
+  @include font-scale($font-body);
+  color: $color-primary;
+  text-decoration: none;
+}

@@ -13,13 +13,28 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,
+    "baseUrl": ".",
     "plugins": [
       {
         "name": "next"
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@root/*": ["./*"],
+      "@domain/*": ["./src/domain/*"],
+      "@entities/*": ["./src/domain/entities/*"],
+      "@value-objects/*": ["./src/domain/value-objects/*"],
+      "@ports/*": ["./src/domain/ports/*"],
+      "@errors/*": ["./src/domain/errors/*"],
+      "@application/*": ["./src/application/*"],
+      "@db/*": ["./src/infrastructure/db/*"],
+      "@mappers/*": ["./src/infrastructure/mappers/*"],
+      "@repositories/*": ["./src/infrastructure/repositories/*"],
+      "@http/*": ["./src/infrastructure/http/*"],
+      "@middleware/*": ["./src/infrastructure/http/middleware/*"],
+      "@schemas/*": ["./src/infrastructure/http/schemas/*"],
+      "@infrastructure/*": ["./src/infrastructure/*"]
     }
   },
   "include": [

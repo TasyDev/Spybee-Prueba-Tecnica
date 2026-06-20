@@ -1,0 +1,126 @@
+@use '../../../styles/abstracts' as *;
+
+.mapSearchNavbar {
+  display: inline-flex;
+  align-items: center;
+  gap: space(3);
+  padding: space(3) space(4);
+  background: rgba($color-surface-container, 0.92);
+  border-radius: $radius-full;
+  outline: 1px solid rgba(255, 255, 255, 0.10);
+  outline-offset: -1px;
+  backdrop-filter: blur(10px);
+  box-shadow: $shadow-login;
+
+  &__search {
+    display: flex;
+    align-items: center;
+    gap: space(3);
+    min-width: 200px;
+    padding: space(2) space(4);
+    background: rgba($color-surface-container-high, 0.60);
+    border-radius: $radius-full;
+    border: 1px solid rgba($color-outline-variant, 0.30);
+  }
+
+  &__input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: $color-on-surface;
+    @include font-scale($font-caption);
+    font-size: 13px;
+    line-height: 18px;
+
+    &::placeholder {
+      color: $color-text-muted;
+    }
+  }
+
+  &__clear {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: space(1);
+    border-radius: $radius-full;
+    @include transition;
+
+    &:hover {
+      background: rgba($color-outline-variant, 0.30);
+    }
+  }
+
+  &__filters {
+    display: flex;
+    align-items: center;
+    gap: space(2);
+    padding-left: space(3);
+    border-left: 1px solid rgba($color-outline-variant, 0.30);
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: space(2);
+    padding-left: space(3);
+    border-left: 1px solid rgba($color-outline-variant, 0.30);
+  }
+
+  &__create {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: rgba($color-primary-container, 0.30);
+    border: 1px solid rgba($color-primary-container, 0.50);
+    border-radius: $radius-full;
+    cursor: pointer;
+    @include transition;
+
+    &:hover {
+      background: rgba($color-primary-container, 0.50);
+      border-color: rgba($color-primary-container, 0.80);
+    }
+  }
+
+  &__recenter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: rgba($color-surface-container-high, 0.60);
+    border: 1px solid rgba($color-outline-variant, 0.30);
+    border-radius: $radius-full;
+    cursor: pointer;
+    @include transition;
+
+    &:hover {
+      background: rgba($color-primary-container, 0.20);
+      border-color: rgba($color-primary-container, 0.50);
+    }
+  }
+
+  @include mobile {
+    flex-wrap: wrap;
+    border-radius: $radius-lg;
+    max-width: 100%;
+
+    &__search {
+      min-width: auto;
+      flex: 1;
+    }
+
+    &__filters {
+      padding-left: 0;
+      border-left: none;
+      width: 100%;
+      justify-content: flex-start;
+    }
+  }
+}
